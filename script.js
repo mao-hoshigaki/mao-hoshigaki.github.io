@@ -424,6 +424,39 @@ const AudioMgr = (() => {
 
 
 /* ════════════════════════════════════════
+   EXTERNAL LINK MODAL
+════════════════════════════════════════ */
+(function () {
+  const modal   = document.getElementById('ext-modal');
+  const domain  = modal.querySelector('.ext-modal-domain');
+  const confirm = modal.querySelector('.ext-modal-confirm');
+  const cancel  = modal.querySelector('.ext-modal-cancel');
+  let pending   = '';
+
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('a[target="_blank"]');
+    if (!link) return;
+    e.preventDefault();
+    pending = link.href;
+    try { domain.textContent = new URL(pending).hostname; }
+    catch { domain.textContent = pending; }
+    modal.classList.add('open');
+  });
+
+  confirm.addEventListener('click', function () {
+    window.open(pending, '_blank', 'noopener,noreferrer');
+    close();
+  });
+
+  cancel.addEventListener('click', close);
+  modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+
+  function close() { modal.classList.remove('open'); pending = ''; }
+})();
+
+
+/* ════════════════════════════════════════
    HEADER  —  sticky on scroll
 ════════════════════════════════════════ */
 (function () {
