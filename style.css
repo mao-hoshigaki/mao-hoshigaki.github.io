@@ -740,18 +740,28 @@ body {
   background: #1e1438;
 }
 
-/* ── X (Twitter) タイムライン ── */
-#x-timeline-wrap {
+/* ── X 個別ポスト埋め込み ── */
+#tweet-wrap {
   max-width: 550px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
-#x-timeline-wrap iframe {
-  width: 100% !important;
+#tweet-wrap .twitter-tweet {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#tweet-wrap iframe {
   max-width: 100% !important;
-  border-radius: .75rem;
-  overflow: hidden;
-  color-scheme: dark;
+  border-radius: .75rem !important;
+}
+
+@media (max-width: 580px) {
+  #tweet-wrap iframe {
+    width: 100% !important;
+    min-width: unset !important;
+  }
 }
 
 
