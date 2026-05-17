@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fan Kit / ガイドライン — 星柿☆猫</title>
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: #1a1030;
+      color: #e8deff;
+      min-height: 100vh;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    /* ── Container ── */
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .fk-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .fk-icon {
+      height: 72px;
+      width: auto;
+      margin-bottom: 1rem;
+    }
+
+    .fk-label {
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #a78bfa;
+      margin-bottom: .4rem;
+    }
+
+    .fk-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #c4b5fd, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: .75rem;
+    }
+
+    .fk-intro {
+      font-size: .9rem;
+      color: #c4b5fd;
+      line-height: 1.8;
+    }
+
+    /* ── Tag cards ── */
+    .tag-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: .75rem;
+      margin: 2rem 0;
+    }
+
+    .tag-card {
+      background: rgba(167,139,250,.1);
+      border: 1px solid rgba(167,139,250,.25);
+      border-radius: .75rem;
+      padding: .85rem 1rem;
+      text-align: center;
+    }
+
+    .tag-label {
+      display: block;
+      font-size: .7rem;
+      color: #a78bfa;
+      letter-spacing: .08em;
+      margin-bottom: .35rem;
+    }
+
+    .tag-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #f0eaff;
+    }
+
+    /* ── Sections ── */
+    .fk-section {
+      margin-bottom: 1.75rem;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(167,139,250,.2);
+      border-radius: 1rem;
+      padding: 1.4rem 1.5rem;
+    }
+
+    .fk-section-title {
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: #a78bfa;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: .6rem;
+      border-bottom: 1px solid rgba(167,139,250,.2);
+    }
+
+    /* ── Lists ── */
+    .g-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+
+    .g-list li {
+      padding-left: 1rem;
+      position: relative;
+      color: #ddd6fe;
+    }
+
+    .g-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #a78bfa;
+    }
+
+    .g-list.danger li::before { color: #f87171; }
+    .g-list.danger li { color: #fca5a5; }
+
+    .sub-title {
+      font-size: .8rem;
+      font-weight: 700;
+      color: #c4b5fd;
+      margin: 1rem 0 .5rem;
+    }
+
+    /* ── AI block ── */
+    .ai-block {
+      margin-top: 1.2rem;
+      background: rgba(239,68,68,.07);
+      border: 1px solid rgba(239,68,68,.3);
+      border-radius: .75rem;
+      padding: 1rem 1.1rem;
+    }
+
+    .ai-title {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .85rem;
+      font-weight: 700;
+      color: #fca5a5;
+      margin-bottom: .6rem;
+    }
+
+    .ai-body {
+      font-size: .85rem;
+      color: #fecaca;
+      line-height: 1.75;
+      margin-bottom: .5rem;
+    }
+
+    .ai-intent {
+      font-size: .78rem;
+      color: #f87171;
+      line-height: 1.7;
+    }
+
+    /* ── Note ── */
+    .note {
+      font-size: .8rem;
+      color: #9ca3af;
+      margin-top: .75rem;
+      line-height: 1.7;
+    }
+
+    /* ── Print button ── */
+    .print-bar {
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+
+    .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: linear-gradient(135deg, #7c3aed, #a78bfa);
+      color: #fff;
+      font-size: .9rem;
+      font-weight: 600;
+      padding: .7rem 1.6rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-print:hover { opacity: .85; }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1.2rem;
+      font-size: .8rem;
+      color: #7c3aed;
+      text-decoration: none;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    /* ── Print styles ── */
+    @media print {
+      body {
+        background: #fff;
+        color: #1a1030;
+        padding: 1.5cm 2cm;
+      }
+
+      .fk-title {
+        background: none;
+        -webkit-text-fill-color: #1a1030;
+        color: #1a1030;
+      }
+
+      .fk-label, .tag-label, .fk-section-title { color: #7c3aed; }
+      .fk-intro, .tag-value, .g-list li { color: #1a1030; }
+
+      .tag-card {
+        background: #f5f3ff;
+        border-color: #7c3aed;
+      }
+
+      .fk-section {
+        background: #faf5ff;
+        border-color: #7c3aed;
+        break-inside: avoid;
+      }
+
+      .ai-block {
+        background: #fff1f2;
+        border-color: #ef4444;
+      }
+
+      .ai-title { color: #dc2626; }
+      .ai-body, .ai-intent { color: #7f1d1d; }
+
+      .g-list.danger li { color: #dc2626; }
+      .g-list.danger li::before { color: #dc2626; }
+
+      .sub-title { color: #4c1d95; }
+      .note { color: #6b7280; }
+
+      .print-bar, .back-link { display: none; }
+
+      .fk-icon { border-color: #7c3aed; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- Header -->
+    <header class="fk-header">
+      <img class="fk-icon" src="images/icon.png" alt="星柿☆猫">
+      <p class="fk-label">Fan Kit</p>
+      <h1 class="fk-title">星柿☆猫 ガイドライン</h1>
+      <p class="fk-intro">
+        いつも応援ありがとうございます！<br>
+        ファンの皆様が安心して活動できるよう、以下のガイドラインを策定しました。
+      </p>
+    </header>
+
+    <!-- Tag cards -->
+    <div class="tag-grid">
+      <div class="tag-card">
+        <span class="tag-label">ファンネーム</span>
+        <span class="tag-value">推し柿</span>
+      </div>
+      <div class="tag-card">
+        <span class="tag-label">ファンマーク</span>
+        <span class="tag-value">🎪"</span>
+      </div>
+      <div class="tag-card">
+        <span class="tag-label">ファンアートタグ</span>
+        <span class="tag-value">#お絵柿 (Oekaki)</span>
+      </div>
+    </div>
+
+    <!-- 各種名称 -->
+    <div class="fk-section">
+      <p class="fk-section-title">各種名称・ハッシュタグ</p>
+      <ul class="g-list">
+        <li><strong>ファンネーム：</strong>推し柿</li>
+        <li><strong>ファンマーク：</strong>🎪"</li>
+        <li><strong>ファンアートタグ：</strong>#お絵柿 (Oekaki)</li>
+      </ul>
+      <p class="note">※タグを付けて投稿された作品は、配信やSNSで紹介させていただく場合があります。</p>
+    </div>
+
+    <!-- 二次創作 -->
+    <div class="fk-section">
+      <p class="fk-section-title">二次創作ルール</p>
+
+      <ul class="g-list">
+        <li><strong>活動範囲：</strong>非営利目的であれば、イラスト・動画・コスプレ等の制作・公開は自由です。</li>
+        <li><strong>切り抜き動画：</strong>概要欄に必ず「元動画のURL」を記載してください。</li>
+      </ul>
+
+      <p class="sub-title">禁止事項</p>
+      <ul class="g-list danger">
+        <li>公式を騙る行為、他者を誹謗中傷する内容への利用。</li>
+        <li>素材（立ち絵等）をそのまま再配布・販売する行為。</li>
+      </ul>
+
+      <div class="ai-block">
+        <p class="ai-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          AI学習・利用の全面禁止
+        </p>
+        <p class="ai-body">
+          当VTuberに関連する一切のコンテンツ（公式イラスト・動画・ファンアートを含む）を、画像生成・その他あらゆるAIの学習データとして使用すること、および当該コンテンツを模倣・再現するためにAIを利用することを<strong>固く禁止</strong>します。
+        </p>
+        <p class="ai-intent">
+          これはクリエイター本人およびファンの皆様の創作活動の独自性・権利を守るための措置です。本ガイドラインはAI技術の動向に応じて随時更新される場合があります。
+        </p>
+      </div>
+
+      <p class="sub-title">R-18 / R-18G 表現</p>
+      <p class="note">投稿の際は必ずゾーニング（ハッシュタグを分ける、外部サイトの利用等）を徹底してください。</p>
+    </div>
+
+    <!-- Print button -->
+    <div class="print-bar">
+      <button class="btn-print" onclick="window.print()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 6 2 18 2 18 9"/>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+          <rect x="6" y="14" width="12" height="8"/>
+        </svg>
+        印刷 / PDF保存
+      </button>
+      <a class="back-link" href="index.html">← メインページに戻る</a>
+    </div>
+
+  </div>
+</body>
+</html>
