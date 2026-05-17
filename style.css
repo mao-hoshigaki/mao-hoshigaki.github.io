@@ -760,17 +760,6 @@ body {
 }
 
 
-.tw-ph {
-  text-align: center;
-  padding: 2rem;
-  color: #555;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 500px;
-}
-
 /* ── Goods ── */
 #goods {
   background: #221432;
@@ -1189,7 +1178,7 @@ footer {
   padding: 2.4rem 1.5rem;
   text-align: center;
   border-top: 1px solid #2e2048;
-  color: #3a3a3a;
+  color: #a090c0;
   font-size: .7rem;
   letter-spacing: .08em;
 }

@@ -436,6 +436,7 @@ const AudioMgr = (() => {
   document.addEventListener('click', function (e) {
     const link = e.target.closest('a[target="_blank"]');
     if (!link) return;
+    if (link.hostname === location.hostname) return;
     e.preventDefault();
     pending = link.href;
     try { domain.textContent = new URL(pending).hostname; }
