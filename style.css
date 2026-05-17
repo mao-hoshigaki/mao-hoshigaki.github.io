@@ -734,6 +734,31 @@ body {
   background: #1e1438;
 }
 
+/* ── Curator.io モバイル修正 ── */
+#curator-feed-default-feed-layout {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 767px) {
+  #curator-feed-default-feed-layout .crt-feed,
+  #curator-feed-default-feed-layout .crt-grid,
+  #curator-feed-default-feed-layout .crt-feed-window {
+    column-count: 1 !important;
+    columns: 1 !important;
+    width: 100% !important;
+  }
+
+  #curator-feed-default-feed-layout .crt-post,
+  #curator-feed-default-feed-layout .crt-post-c {
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
 
 .tw-ph {
   text-align: center;
