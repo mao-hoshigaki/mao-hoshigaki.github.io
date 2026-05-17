@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>星柿☆猫 – Mao☆Hoshigaki · V-Liver</title>
+  <meta name="description" content="東北の猫又Vライバー・星柿☆猫(Mao☆Hoshigaki)の公式サイト。TikTokで毎日配信中。グッズ・ファンキット・お問い合わせはこちら。" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="星柿☆猫 – Mao☆Hoshigaki · V-Liver" />
+  <meta property="og:description" content="東北の猫又Vライバー・星柿☆猫の公式サイト。TikTokで毎日配信中。" />
+  <meta property="og:image"       content="images/Mao_top.png" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="星柿☆猫 – Mao☆Hoshigaki · V-Liver" />
+  <meta name="twitter:description" content="東北の猫又Vライバー・星柿☆猫の公式サイト。TikTokで毎日配信中。" />
+  <meta name="twitter:image"       content="images/Mao_top.png" />
+  <link rel="icon" href="images/icon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+  HEADER  (absolute, overlays hero)
+══════════════════════════════════════ -->
+<header id="site-header">
+  <a href="#hero" class="logo-link">
+    <img src="images/icon.png" alt="星柿☆猫" class="logo-icon" />
+    <div>
+      <div class="logo-main">星柿☆猫</div>
+      <div class="logo-sub">Mao☆Hoshigaki · V-Liver</div>
+    </div>
+  </a>
+
+  <button id="mute-btn" aria-label="Toggle audio">
+    <svg id="ico-muted" width="22" height="22" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <line x1="23" y1="9" x2="17" y2="15"/>
+      <line x1="17" y1="9" x2="23" y2="15"/>
+    </svg>
+    <svg id="ico-unmuted" width="22" height="22" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         style="display:none">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+    </svg>
+  </button>
+
+  <!-- PC nav (768px+) -->
+  <nav class="pc-nav">
+    <a href="https://www.tiktok.com/@mao_hoshigaki" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://x.com/mao_hoshigaki" target="_blank" rel="noopener">X</a>
+    <a href="https://store.line.me/stickershop/product/33512155/ja" target="_blank" rel="noopener">LINEスタンプ</a>
+    <a href="#goods">グッズ</a>
+    <a href="#contact">Contact</a>
+    <a href="https://marshmallow-qa.com/tw6jzup37mnl3h5?t=SCmUFL&utm_medium=url_text&utm_source=promotion"
+       target="_blank" rel="noopener">マシュマロ</a>
+  </nav>
+
+  <!-- mobile only -->
+  <a href="#contact"
+     class="header-contact-sp text-white/50 hover:text-white text-xs tracking-widest uppercase transition-colors">
+    Contact
+  </a>
+</header>
+
+
+<!-- ══════════════════════════════════════
+  HERO  —  FULL-SCREEN CAROUSEL
+══════════════════════════════════════ -->
+<section id="hero" aria-label="Hero">
+
+  <div class="slides-track" id="slides-track">
+
+    <!-- SLIDE 1 · Active (video bg) -->
+    <div class="slide" id="slide-video">
+      <img class="slide-bg-blur" src="images/Mao_top.png" alt="" aria-hidden="true" />
+      <video id="hero-video" autoplay muted loop playsinline preload="metadata">
+        <source src="videos/movie.mp4" type="video/mp4" />
+      </video>
+      <div id="hero-name-overlay">
+        <h1 class="hero-name-main">Mao☆Hoshigaki</h1>
+      </div>
+      <span class="slide-tag">Active</span>
+    </div>
+
+    <!-- SLIDE 2 · Visual (character image) -->
+    <div class="slide" id="slide-visual">
+      <img class="slide-bg-blur" src="images/Mao_top.png" alt="" aria-hidden="true" />
+      <img src="images/Mao_top.png"
+           alt="星柿☆猫 – Character Visual"
+           loading="eager"
+           onerror="this.style.opacity='.15'" />
+      <span class="slide-tag">Visual</span>
+    </div>
+
+  </div>
+
+  <!-- Arrow buttons (desktop) -->
+  <button class="swipe-hint swipe-hint-l" id="arrow-prev" aria-label="前のスライド">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+  <button class="swipe-hint swipe-hint-r" id="arrow-next" aria-label="次のスライド">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  </button>
+
+  <!-- Dot indicators -->
+  <div class="carousel-dots">
+    <button class="carousel-dot active" data-idx="0" aria-label="Slide 1"></button>
+    <button class="carousel-dot"        data-idx="1" aria-label="Slide 2"></button>
+  </div>
+
+  <!-- Swipe pulse hint -->
+  <div id="swipe-pulse"></div>
+
+</section>
+
+
+
+
+<!-- ══════════════════════════════════════
+  CIRCLE NAV  (fixed right)
+══════════════════════════════════════ -->
+<nav id="circle-nav" aria-label="クイックリンク">
+
+  <!-- TikTok — large red -->
+  <a href="https://www.tiktok.com/@mao_hoshigaki" class="nc nc-lg" data-tip="TikTok" aria-label="TikTok"
+     target="_blank" rel="noopener">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0
+               1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28
+               0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34
+               6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18
+               8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
+    </svg>
+  </a>
+
+  <!-- LINE スタンプ -->
+  <a href="https://store.line.me/stickershop/product/33512155/ja" class="nc nc-sm nc-line" data-tip="LINEスタンプ" aria-label="LINEスタンプ"
+     target="_blank" rel="noopener">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.03 2 11c0 3.13 1.68 5.9 4.28 7.61-.18.67-.66
+               2.44-.75 2.82-.12.49.18.48.38.35.16-.1 2.56-1.69 3.6-2.38.48.07
+               .97.1 1.49.1 5.52 0 10-4.03 10-9C22 6.03 17.52 2 12 2zm-3
+               12.5H7.5V9H9v5.5zm2.75 0h-1.5V9h1.5v5.5zm4.25 0h-1.5l-2-3.3v3.3
+               H11V9h1.5l2 3.29V9H16.5v5.5z"/>
+    </svg>
+  </a>
+
+  <!-- X / Twitter -->
+  <a href="https://x.com/mao_hoshigaki" class="nc nc-sm" data-tip="X (Twitter)" aria-label="X (Twitter)"
+     target="_blank" rel="noopener">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401
+               6.231H2.742l7.727-8.835L1.254 2.25H8.08l4.262 5.636 5.902-5.636zm-1.161
+               17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
+    </svg>
+  </a>
+
+  <!-- グッズ -->
+  <a href="#goods" class="nc nc-sm" data-tip="グッズ" aria-label="グッズ">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+  </a>
+
+  <!-- Contact -->
+  <a href="#contact" class="nc nc-sm" data-tip="Contact" aria-label="Contact">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </a>
+
+  <!-- マシュマロ -->
+  <a href="https://marshmallow-qa.com/tw6jzup37mnl3h5?t=SCmUFL&utm_medium=url_text&utm_source=promotion"
+     class="nc nc-sm nc-marshmallow" data-tip="マシュマロ" aria-label="マシュマロ"
+     target="_blank" rel="noopener">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 5.92 2 10.8c0 3.27 1.88 6.14 4.72 7.8L6 22l4.07-2.08C10.69 20 11.34 20 12 20c5.52 0 10-3.92 10-8.8S17.52 2 12 2zm0 14c-.74 0-1.46-.08-2.15-.22L7 17l.57-2.48C5.98 13.42 5 12.18 5 10.8 5 7.58 8.13 5 12 5s7 2.58 7 5.8-3.13 5.8-7 5.8z"/>
+    </svg>
+  </a>
+
+</nav>
+
+
+<!-- ══════════════════════════════════════
+  PROFILE
+══════════════════════════════════════ -->
+<section id="profile">
+  <div class="section">
+    <div class="profile-grid">
+
+      <!-- Character art -->
+      <div class="profile-art">
+        <!-- Replace src — onerror shows placeholder if image missing -->
+        <img src="images/Mao.png" alt="星柿☆猫 プロフィールイラスト"
+             onerror="this.style.display='none'; document.getElementById('art-ph').style.display='flex';" />
+        <div id="art-ph" class="profile-art-ph" style="display:none;">[ Character Art ]</div>
+      </div>
+
+      <!-- Bio -->
+      <div>
+        <p class="sec-label">Profile</p>
+        <h2 class="sec-title">
+          星柿☆猫<br/>
+          <span style="font-size:.5em; font-weight:400; letter-spacing:.12em; color:rgba(255,255,255,.4);">
+            Mao☆Hoshigaki
+          </span>
+        </h2>
+
+        <p style="font-size:.88rem; line-height:1.9; color:rgba(255,255,255,.62); margin-bottom:1.5rem;">
+          東北の猫又Vライバー星柿☆猫(ﾎｼｶﾞｷ ﾏｵ)です。<br/>
+          Tiktokで毎日配信中。<br/>
+          雑談・ゲーム・歌配信等で中毒者多発中！
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">VTuber</span>
+          <span class="tag">ゲーム実況</span>
+          <span class="tag">雑談</span>
+          <span class="tag">TikTok LIVE</span>
+        </div>
+
+        <div style="display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1.75rem;">
+          <a href="#fankit" class="btn-p">
+            Fan Kit / ガイドライン
+          </a>
+          <a href="https://www.tiktok.com/@mao_hoshigaki" class="btn-o" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0
+                       0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1
+                       2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05
+                       6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34
+                       6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76
+                       a4.85 4.85 0 0 1-1.01-.07z"/>
+            </svg>
+            TikTok フォロー
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+  FAN KIT & GUIDELINES
+══════════════════════════════════════ -->
+<section id="fankit">
+  <div class="section">
+    <p class="sec-label">Fan Kit</p>
+    <h2 class="sec-title">ガイドライン</h2>
+
+    <p class="fankit-intro">
+      いつも応援ありがとうございます！<br/>
+      ファンの皆様が安心して活動できるよう、以下のガイドラインを策定しました。
+    </p>
+
+    <!-- ファン情報カード -->
+    <div class="fankit-tags">
+      <div class="fankit-tag-card">
+        <span class="fankit-tag-label">ファンネーム</span>
+        <span class="fankit-tag-value">推し柿</span>
+      </div>
+      <div class="fankit-tag-card">
+        <span class="fankit-tag-label">ファンマーク</span>
+        <span class="fankit-tag-value">🎪"</span>
+      </div>
+      <div class="fankit-tag-card">
+        <span class="fankit-tag-label">ファンアートタグ</span>
+        <span class="fankit-tag-value">#お絵柿 (Oekaki)</span>
+      </div>
+    </div>
+
+    <!-- アコーディオン -->
+    <div class="accordion">
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>各種名称・ハッシュタグ</span>
+          <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <ul class="guideline-list">
+              <li><strong>ファンネーム：</strong>推し柿</li>
+              <li><strong>ファンマーク：</strong>🎪"</li>
+              <li><strong>ファンアートタグ：</strong>#お絵柿 (Oekaki)</li>
+            </ul>
+            <p class="guideline-note">※タグを付けて投稿された作品は、配信やSNSで紹介させていただく場合があります。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>二次創作ルール</span>
+          <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <ul class="guideline-list">
+              <li><strong>活動範囲：</strong>非営利目的であれば、イラスト・動画・コスプレ等の制作・公開は自由です。</li>
+              <li><strong>切り抜き動画：</strong>概要欄に必ず「元動画のURL」を記載してください。</li>
+            </ul>
+            <p class="guideline-section-title">禁止事項</p>
+            <ul class="guideline-list guideline-list-danger">
+              <li>公式を騙る行為、他者を誹謗中傷する内容への利用。</li>
+              <li>素材（立ち絵等）をそのまま再配布・販売する行為。</li>
+            </ul>
+            <div class="guideline-ai-block">
+              <p class="guideline-ai-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                  <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                AI学習・利用の全面禁止
+              </p>
+              <p class="guideline-ai-body">
+                当VTuberに関連する一切のコンテンツ（公式イラスト・動画・ファンアートを含む）を、画像生成・その他あらゆるAIの学習データとして使用すること、および当該コンテンツを模倣・再現するためにAIを利用することを<strong>固く禁止</strong>します。
+              </p>
+              <p class="guideline-ai-intent">
+                これはクリエイター本人およびファンの皆様の創作活動の独自性・権利を守るための措置です。本ガイドラインはAI技術の動向に応じて随時更新される場合があります。
+              </p>
+            </div>
+            <p class="guideline-section-title">R-18 / R-18G 表現</p>
+            <p class="guideline-note">投稿の際は必ずゾーニング（ハッシュタグを分ける、外部サイトの利用等）を徹底してください。</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ダウンロードボタン -->
+    <a href="fankit.html" target="_blank" rel="noopener" class="btn-p">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Fan Kit をダウンロード
+    </a>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+  NEWS  —  X (Twitter) Timeline
+══════════════════════════════════════ -->
+<section id="news">
+  <div class="section">
+    <p class="sec-label">News</p>
+    <h2 class="sec-title">最新情報</h2>
+
+    <div class="tw-wrap">
+      <a class="twitter-timeline"
+         data-lang="ja"
+         data-theme="dark"
+         data-height="500"
+         href="https://twitter.com/mao_hoshigaki">
+        Tweets by @mao_hoshigaki
+      </a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+  GOODS CATALOG
+══════════════════════════════════════ -->
+<section id="goods">
+  <div class="section">
+    <p class="sec-label">Goods</p>
+    <h2 class="sec-title">グッズ</h2>
+
+    <!-- SUZURI -->
+    <div class="shop-block">
+      <div class="shop-heading">
+        <span class="shop-label shop-label-suzuri">SUZURI</span>
+        <a href="https://suzuri.jp/Mao_Hoshigaki" class="shop-link"
+           target="_blank" rel="noopener">ショップを見る →</a>
+        <span class="shop-note">※サイズやカラーによって価格が異なります</span>
+      </div>
+      <div class="goods-grid" id="goods-suzuri"></div>
+    </div>
+
+    <!-- 幸福堂 -->
+    <div class="shop-block">
+      <div class="shop-heading">
+        <span class="shop-label shop-label-koufukudo">幸福堂</span>
+        <a href="https://fukutaro86.thebase.in" class="shop-link"
+           target="_blank" rel="noopener">ショップを見る →</a>
+      </div>
+      <div class="goods-grid" id="goods-koufukudo"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+  CONTACT
+══════════════════════════════════════ -->
+<section id="contact">
+  <div class="section" style="max-width:640px; text-align:center;">
+    <p class="sec-label">Contact</p>
+    <h2 class="sec-title">お問い合わせ</h2>
+    <p style="font-size:.88rem; color:rgba(255,255,255,.48); line-height:1.95; margin-bottom:2.5rem;">
+      お仕事のご依頼・コラボのご相談などは<br/>
+      下記よりお気軽にご連絡ください。
+    </p>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:1.2rem;">
+      <a href="mailto:mao.hoshigaki@gmail.com" class="btn-p" style="display:inline-flex;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        メールで連絡する
+      </a>
+
+      <div class="contact-divider">
+        <span>または</span>
+      </div>
+
+      <div>
+        <p style="font-size:.8rem; color:rgba(255,255,255,.4); margin-bottom:.85rem; letter-spacing:.05em;">
+          匿名での応援はこちら
+        </p>
+        <a href="https://marshmallow-qa.com/tw6jzup37mnl3h5?t=SCmUFL&utm_medium=url_text&utm_source=promotion"
+           class="btn-marshmallow" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 5.92 2 10.8c0 3.27 1.88 6.14 4.72 7.8L6 22l4.07-2.08C10.69 20 11.34 20 12 20c5.52 0 10-3.92 10-8.8S17.52 2 12 2zm0 14c-.74 0-1.46-.08-2.15-.22L7 17l.57-2.48C5.98 13.42 5 12.18 5 10.8 5 7.58 8.13 5 12 5s7 2.58 7 5.8-3.13 5.8-7 5.8z"/>
+          </svg>
+          マシュマロを送る
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2024 星柿☆猫 / Mao☆Hoshigaki &nbsp;·&nbsp; All rights reserved.</p>
+</footer>
+
+<button id="back-to-top" aria-label="TOPに戻る">
+  <span class="btt-imgs">
+    <img class="btt-img-default" src="images/TOP.png" alt="">
+    <img class="btt-img-hover" src="images/TOP2.png" alt="">
+  </span>
+  <span class="btt-label">TOPに戻る</span>
+</button>
+
+
+<!-- ══════════════════════════════════════
+  AUDIO ELEMENTS
+  Slide 1 (動画): hero-video の音声トラックを直接使用
+  Slide 2 (静止画): audio-b = NEKOMATA!
+══════════════════════════════════════ -->
+<audio id="audio-b" loop preload="none">
+  <source src="audio/NEKOMATA!.mp3" type="audio/mpeg" />
+</audio>
+
+<script src="script.js"></script>
+
+</body>
+</html>
