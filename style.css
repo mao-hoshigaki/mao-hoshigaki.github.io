@@ -743,19 +743,27 @@ body {
 @media (max-width: 767px) {
   #curator-feed-default-feed-layout .crt-feed,
   #curator-feed-default-feed-layout .crt-grid,
-  #curator-feed-default-feed-layout .crt-feed-window {
+  #curator-feed-default-feed-layout .crt-feed-window,
+  #curator-feed-default-feed-layout .crt-feed-container,
+  #curator-feed-default-feed-layout [class*="crt-grid"],
+  #curator-feed-default-feed-layout [class*="crt-feed"] {
     column-count: 1 !important;
     columns: 1 !important;
     width: 100% !important;
+    display: block !important;
+    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
   }
 
   #curator-feed-default-feed-layout .crt-post,
-  #curator-feed-default-feed-layout .crt-post-c {
+  #curator-feed-default-feed-layout .crt-post-c,
+  #curator-feed-default-feed-layout [class*="crt-post"] {
     width: 100% !important;
     max-width: 100% !important;
     float: none !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
+    box-sizing: border-box !important;
   }
 }
 
