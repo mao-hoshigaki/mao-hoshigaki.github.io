@@ -336,7 +336,7 @@ const AudioMgr = (() => {
         <div class="g-info">
           <div class="g-name">${g.name}</div>
           <div class="g-price">${g.price}（税込）</div>
-          <a href="${g.url}" class="g-btn" target="_blank" rel="noopener">Buy Now</a>
+          <a href="${g.url}" class="g-btn" target="_blank" rel="noopener noreferrer">Buy Now</a>
         </div>
       </div>`).join('') + comingSoon;
   }
