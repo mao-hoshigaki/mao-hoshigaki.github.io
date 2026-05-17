@@ -472,8 +472,8 @@ const AudioMgr = (() => {
 
 /* ════════════════════════════════════════
    MUTE BUTTON PLACEMENT
-   モバイル: circle-nav内(HTML初期位置)
-   PC(768px+): headerのpc-nav直前に移動
+   モバイル・タブレット(<1024px): circle-nav内
+   PC(1024px+): headerのpc-nav直前に移動
 ════════════════════════════════════════ */
 (function () {
   const btn = document.getElementById('mute-btn');
@@ -482,7 +482,7 @@ const AudioMgr = (() => {
   const pcNav = header.querySelector('.pc-nav');
 
   function place() {
-    if (window.innerWidth >= 768) {
+    if (window.innerWidth >= 1024) {
       if (!header.contains(btn)) header.insertBefore(btn, pcNav);
     } else {
       if (!circleNav.contains(btn)) circleNav.appendChild(btn);
@@ -491,4 +491,34 @@ const AudioMgr = (() => {
 
   place();
   window.addEventListener('resize', place);
+})();
+
+
+/* ════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════ */
+(function () {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('sr-on');
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  const targets = [
+    ...document.querySelectorAll('#profile, #news, #fankit, #goods, #contact'),
+    ...document.querySelectorAll('.g-card, .fankit-tag-card, .accordion-item'),
+  ];
+
+  const vh = window.innerHeight;
+  targets.forEach(el => {
+    if (el.getBoundingClientRect().top <= vh) return;
+    el.classList.add('sr');
+    if (el.classList.contains('g-card')) {
+      const idx = [...el.parentElement.children].indexOf(el);
+      el.style.transitionDelay = `${idx * 0.06}s`;
+    }
+    io.observe(el);
+  });
 })();

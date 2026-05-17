@@ -740,37 +740,18 @@ body {
   background: #1e1438;
 }
 
-/* ── Curator.io モバイル修正 ── */
-#curator-feed-default-feed-layout {
-  max-width: 100% !important;
-  overflow: hidden !important;
+/* ── X (Twitter) タイムライン ── */
+#x-timeline-wrap {
+  max-width: 550px;
+  margin: 0 auto;
 }
 
-@media (max-width: 767px) {
-  #curator-feed-default-feed-layout .crt-feed,
-  #curator-feed-default-feed-layout .crt-grid,
-  #curator-feed-default-feed-layout .crt-feed-window,
-  #curator-feed-default-feed-layout .crt-feed-container,
-  #curator-feed-default-feed-layout [class*="crt-grid"],
-  #curator-feed-default-feed-layout [class*="crt-feed"] {
-    column-count: 1 !important;
-    columns: 1 !important;
-    width: 100% !important;
-    display: block !important;
-    grid-template-columns: 1fr !important;
-    flex-direction: column !important;
-  }
-
-  #curator-feed-default-feed-layout .crt-post,
-  #curator-feed-default-feed-layout .crt-post-c,
-  #curator-feed-default-feed-layout [class*="crt-post"] {
-    width: 100% !important;
-    max-width: 100% !important;
-    float: none !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    box-sizing: border-box !important;
-  }
+#x-timeline-wrap iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: .75rem;
+  overflow: hidden;
+  color-scheme: dark;
 }
 
 
@@ -1367,4 +1348,37 @@ footer {
     font-size: .85rem;
   }
 
+}
+
+/* ════════════════════════════════════════
+   SECTION SEPARATORS
+════════════════════════════════════════ */
+#profile, #news, #fankit, #goods, #contact {
+  border-top: 1px solid rgba(224, 112, 32, .18);
+}
+
+/* ════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════ */
+.sr {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.sr.sr-on {
+  opacity: 1;
+  transform: none;
+}
+
+/* ════════════════════════════════════════
+   TABLET OVERRIDES (768px–1023px)
+   circle-navをモバイルと同じ右側表示に
+════════════════════════════════════════ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  #circle-nav        { display: flex; }
+  .pc-nav            { display: none; }
+  .header-contact-sp { display: block; }
+  #back-to-top       { width: 56px; right: .9rem; }
+  .btt-imgs          { width: 56px; height: 56px; }
+  .btt-label         { font-size: .6rem; }
 }
