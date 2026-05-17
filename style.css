@@ -1026,14 +1026,9 @@ body {
   max-width: 600px;
   height: 400px;
   background: url('images/Mao_footer.png') no-repeat bottom center / contain;
-  opacity: 0;
+  opacity: 0.45;
   pointer-events: none;
   z-index: 0;
-  transition: opacity .6s ease;
-}
-
-#contact:has(.btn-p:hover, .btn-marshmallow:hover)::after {
-  opacity: 0.5;
 }
 
 #contact .section {
