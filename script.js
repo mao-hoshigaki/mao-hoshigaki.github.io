@@ -468,3 +468,27 @@ const AudioMgr = (() => {
     header.classList.toggle('scrolled', !e.isIntersecting);
   }, { threshold: 0.05 }).observe(hero);
 })();
+
+
+/* ════════════════════════════════════════
+   MUTE BUTTON PLACEMENT
+   モバイル: circle-nav内(HTML初期位置)
+   PC(768px+): headerのpc-nav直前に移動
+════════════════════════════════════════ */
+(function () {
+  const btn = document.getElementById('mute-btn');
+  const header = document.getElementById('site-header');
+  const circleNav = document.getElementById('circle-nav');
+  const pcNav = header.querySelector('.pc-nav');
+
+  function place() {
+    if (window.innerWidth >= 768) {
+      if (!header.contains(btn)) header.insertBefore(btn, pcNav);
+    } else {
+      if (!circleNav.contains(btn)) circleNav.appendChild(btn);
+    }
+  }
+
+  place();
+  window.addEventListener('resize', place);
+})();
