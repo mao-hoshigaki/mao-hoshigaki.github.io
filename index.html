@@ -258,13 +258,21 @@
 
 
 <!-- ══════════════════════════════════════
-  NEWS  —  Curator.io (X feed)
+  NEWS  —  X (Twitter) timeline
 ══════════════════════════════════════ -->
 <section id="news">
   <div class="section">
     <p class="sec-label">News</p>
     <h2 class="sec-title">最新情報</h2>
-    <div id="curator-feed-default-feed-layout"><a href="https://curator.io" target="_blank" rel="noopener noreferrer" class="crt-logo crt-tag">Powered by Curator.io</a></div>
+    <div id="x-timeline-wrap">
+      <a class="twitter-timeline"
+         data-theme="dark"
+         data-chrome="noheader nofooter noborders transparent"
+         data-tweet-limit="6"
+         href="https://twitter.com/mao_hoshigaki">
+        Tweets by mao_hoshigaki
+      </a>
+    </div>
   </div>
 </section>
 
@@ -493,14 +501,7 @@
 </audio>
 
 <script src="script.js"></script>
-<script type="text/javascript">
-/* curator-feed-default-feed-layout */
-(function(){
-var i,e,d=document,s="script";i=d.createElement("script");i.async=1;i.charset="UTF-8";
-i.src="https://cdn.curator.io/published/328571d4-4065-433e-8bf5-754812570886.js";
-e=d.getElementsByTagName(s)[0];e.parentNode.insertBefore(i, e);
-})();
-</script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </body>
 </html>
