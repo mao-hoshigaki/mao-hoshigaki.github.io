@@ -231,7 +231,7 @@ body {
 /* ── Mute button ── */
 #mute-btn {
   position: fixed;
-  bottom: 5.6rem;
+  bottom: 10rem;
   right: 1.2rem;
   z-index: 60;
   width: 3.5rem;
