@@ -230,8 +230,8 @@ body {
 
 /* ── Mute button ── */
 #mute-btn {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
   background: #e07020;
   border: 1.5px solid rgba(255, 160, 40, .5);
