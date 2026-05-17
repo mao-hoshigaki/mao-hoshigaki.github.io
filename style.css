@@ -1300,10 +1300,10 @@ footer {
 
   /* ---- mute button: JSでheaderに移動後のスタイル ---- */
   #mute-btn {
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 3.5rem;
+    height: 3.5rem;
     margin-left: 1rem;
-    box-shadow: 0 2px 8px rgba(220, 100, 0, .35);
+    box-shadow: 0 3px 14px rgba(220, 100, 0, .45);
     flex-shrink: 0;
   }
 
