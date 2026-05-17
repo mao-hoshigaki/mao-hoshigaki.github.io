@@ -61,6 +61,16 @@ body {
 
 .header-contact-sp {
   display: block;
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .68);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.header-contact-sp:hover {
+  color: #fff;
 }
 
 /* blur bg image: hidden on mobile */
@@ -223,7 +233,7 @@ body {
 .logo-sub {
   font-size: .72rem;
   letter-spacing: .22em;
-  color: rgba(255, 255, 255, .5);
+  color: rgba(255, 255, 255, .68);
   text-transform: uppercase;
   margin-top: .1rem;
 }
@@ -500,7 +510,7 @@ body {
   padding: .28rem .82rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, .18);
-  color: rgba(255, 255, 255, .65);
+  color: rgba(255, 255, 255, .78);
 }
 
 .btn-p {
@@ -549,7 +559,7 @@ body {
 .fankit-intro {
   font-size: .88rem;
   line-height: 1.9;
-  color: rgba(255,255,255,.55);
+  color: rgba(255,255,255,.75);
   margin-bottom: 2rem;
 }
 
@@ -576,7 +586,7 @@ body {
   font-size: .6rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.38);
+  color: rgba(255,255,255,.55);
 }
 .fankit-tag-value {
   font-size: 1rem;
@@ -627,7 +637,7 @@ body {
 .accordion-chevron {
   flex-shrink: 0;
   transition: transform .3s ease;
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.55);
 }
 .accordion-trigger[aria-expanded="true"] .accordion-chevron {
   transform: rotate(180deg);
@@ -655,7 +665,7 @@ body {
 }
 .guideline-list li {
   font-size: .84rem;
-  color: rgba(255,255,255,.68);
+  color: rgba(255,255,255,.82);
   line-height: 1.75;
   padding-left: 1.1rem;
   position: relative;
@@ -674,13 +684,13 @@ body {
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.35);
+  color: rgba(255,255,255,.55);
   margin: 1rem 0 .3rem;
 }
 
 .guideline-note {
   font-size: .78rem;
-  color: rgba(255,255,255,.38);
+  color: rgba(255,255,255,.60);
   line-height: 1.75;
   margin: .4rem 0 0;
 }
@@ -718,7 +728,7 @@ body {
 
 .guideline-ai-intent {
   font-size: .76rem;
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.60);
   line-height: 1.7;
   margin: 0;
   border-top: 1px solid rgba(248,113,113,.2);
@@ -807,7 +817,7 @@ body {
 
 .shop-link {
   font-size: .68rem;
-  color: rgba(255, 255, 255, .45);
+  color: rgba(255, 255, 255, .65);
   text-decoration: none;
   letter-spacing: .05em;
   transition: color .2s;
@@ -819,7 +829,7 @@ body {
 
 .shop-note {
   font-size: .62rem;
-  color: rgba(255, 255, 255, .35);
+  color: rgba(255, 255, 255, .52);
   letter-spacing: .04em;
   margin-left: auto;
 }
@@ -894,7 +904,7 @@ body {
 
 .g-price {
   font-size: .73rem;
-  color: #888;
+  color: rgba(255, 255, 255, .58);
   margin-bottom: .72rem;
 }
 
@@ -978,7 +988,7 @@ body {
 
 .btt-label {
   font-size: .6rem;
-  color: rgba(255, 255, 255, .65);
+  color: rgba(255, 255, 255, .78);
   letter-spacing: .05em;
   white-space: nowrap;
   text-shadow: 0 1px 4px rgba(0, 0, 0, .6);
@@ -1058,7 +1068,7 @@ body {
 
 .contact-divider span {
   font-size: .72rem;
-  color: rgba(255, 255, 255, .3);
+  color: rgba(255, 255, 255, .50);
   white-space: nowrap;
 }
 
@@ -1134,7 +1144,7 @@ body {
 
 .ext-modal-domain {
   font-size: .78rem;
-  color: rgba(255, 255, 255, .4);
+  color: rgba(255, 255, 255, .62);
   margin: 0 0 1.6rem;
   word-break: break-all;
 }
@@ -1160,7 +1170,7 @@ body {
 
 .ext-modal-cancel {
   background: rgba(255, 255, 255, .08);
-  color: rgba(255, 255, 255, .6);
+  color: rgba(255, 255, 255, .78);
 }
 
 .ext-modal-cancel:hover {
@@ -1275,7 +1285,7 @@ footer {
   }
 
   .pc-nav a {
-    color: rgba(255, 255, 255, .65);
+    color: rgba(255, 255, 255, .80);
     text-decoration: none;
     font-size: .92rem;
     font-weight: 500;
