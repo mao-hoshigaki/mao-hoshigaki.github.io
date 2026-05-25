@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>100問100答 – 星柿☆猫 / Mao☆Hoshigaki</title>
+  <meta name="description" content="東北の猫又Vライバー・星柿☆猫の100問100答。キャラクター・趣味・配信のことを全部答えたよ！" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #e07020;
+      --accent-h: #c85c00;
+      --bg: #1e1438;
+      --bg2: #241638;
+      --bg3: #1a1030;
+      --card: #2c1e42;
+      --border: #3e2860;
+      --purple: #c084fc;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic Pro', 'BIZ UDPGothic', system-ui, sans-serif;
+      background: var(--bg);
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+
+    /* ── Header ── */
+    #site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(30, 20, 56, .92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(224, 112, 32, .18);
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      text-decoration: none;
+    }
+
+    .logo-main {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: .07em;
+      color: #fff;
+    }
+
+    .logo-sub {
+      font-size: .68rem;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.55);
+      text-transform: uppercase;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .5rem 1.1rem;
+      border-radius: 999px;
+      border: 1.5px solid rgba(255,255,255,.25);
+      color: rgba(255,255,255,.78);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-decoration: none;
+      transition: border-color .2s, color .2s, transform .15s;
+    }
+    .back-btn:hover {
+      border-color: rgba(255,255,255,.6);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* ── Hero ── */
+    .qa-hero {
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg2);
+      border-bottom: 1px solid rgba(224, 112, 32, .18);
+    }
+
+    .qa-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(200,170,255,0.35) 1px, transparent 1px);
+      background-size: 4px 4px;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .qa-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(192,132,252,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      font-size: .62rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .7rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 .6rem;
+      line-height: 1.2;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title span {
+      color: var(--purple);
+    }
+
+    .hero-desc {
+      font-size: .88rem;
+      color: rgba(255,255,255,.62);
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+      margin: 0;
+    }
+
+    /* ── Category Nav ── */
+    .cat-nav {
+      position: sticky;
+      top: 57px;
+      z-index: 80;
+      background: rgba(26,16,48,.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      padding: .6rem 1rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .cat-nav::-webkit-scrollbar { display: none; }
+
+    .cat-nav-inner {
+      display: inline-flex;
+      gap: .4rem;
+    }
+
+    .cat-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      padding: .35rem .9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: none;
+      color: rgba(255,255,255,.65);
+      font-family: inherit;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    .cat-btn:hover, .cat-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* ── Main ── */
+    .qa-main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    /* ── Category Section ── */
+    .qa-category {
+      margin-bottom: 3.5rem;
+    }
+
+    .qa-category-header {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: .6rem;
+      border-bottom: 1px solid rgba(224,112,32,.25);
+    }
+
+    .qa-category-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: rgba(224, 112, 32, .15);
+      border: 1.5px solid rgba(224, 112, 32, .35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+
+    .qa-category-title {
+      font-size: .62rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .qa-category-range {
+      font-size: .6rem;
+      color: rgba(255,255,255,.32);
+      letter-spacing: .08em;
+      margin-left: auto;
+    }
+
+    /* ── QA Item ── */
+    .qa-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: .95rem;
+      overflow: hidden;
+      margin-bottom: .55rem;
+      transition: border-color .25s, box-shadow .25s;
+    }
+
+    .qa-item:hover {
+      border-color: rgba(192,132,252,.4);
+      box-shadow: 0 4px 20px rgba(192,132,252,.1);
+    }
+
+    .qa-trigger {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      gap: .85rem;
+      padding: 1rem 1.2rem;
+      background: none;
+      border: none;
+      color: #fff;
+      font-family: inherit;
+      font-size: .88rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      cursor: pointer;
+      text-align: left;
+      transition: background .2s;
+    }
+
+    .qa-trigger:hover {
+      background: rgba(255,255,255,.04);
+    }
+
+    .qa-trigger[aria-expanded="true"] {
+      color: var(--purple);
+    }
+
+    .qa-num {
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      color: var(--accent);
+      min-width: 2rem;
+      padding-top: .12rem;
+      flex-shrink: 0;
+    }
+
+    .qa-q-text {
+      flex: 1;
+      line-height: 1.55;
+    }
+
+    .qa-chevron {
+      flex-shrink: 0;
+      margin-top: .15rem;
+      color: rgba(255,255,255,.35);
+      transition: transform .3s ease, color .3s;
+    }
+
+    .qa-trigger[aria-expanded="true"] .qa-chevron {
+      transform: rotate(180deg);
+      color: var(--purple);
+    }
+
+    .qa-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+
+    .qa-body-inner {
+      padding: .2rem 1.2rem 1.2rem 3.85rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+      font-size: .88rem;
+      color: rgba(255,255,255,.82);
+      line-height: 1.85;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2.4rem 1.5rem;
+      text-align: center;
+      background: #000;
+      border-top: 1px solid #2e2048;
+      color: #a090c0;
+      font-size: .7rem;
+      letter-spacing: .08em;
+    }
+
+    /* ── Scroll reveal ── */
+    .sr {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .sr.sr-on {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (min-width: 768px) {
+      .qa-hero { padding: 5rem 2rem 4rem; }
+      .qa-main { padding: 4rem 2rem 8rem; }
+      #site-header { padding: 1rem 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header id="site-header">
+  <a class="logo-link" href="index.html">
+    <div>
+      <div class="logo-main">星柿☆猫</div>
+      <div class="logo-sub">Mao☆Hoshigaki · V-Liver</div>
+    </div>
+  </a>
+  <a class="back-btn" href="index.html">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    トップへ
+  </a>
+</header>
+
+<!-- Hero -->
+<section class="qa-hero">
+  <p class="hero-label">Profile · Q&A</p>
+  <h1 class="hero-title">100問<span>100答</span></h1>
+  <p class="hero-desc">東北の猫又Vライバー・星柿☆猫のことを<br>全部答えちゃいます！</p>
+</section>
+
+<!-- Category Nav -->
+<nav class="cat-nav" aria-label="カテゴリ">
+  <div class="cat-nav-inner">
+    <button class="cat-btn active" data-cat="all">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
+      すべて
+    </button>
+    <button class="cat-btn" data-cat="chara">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      キャラクター
+    </button>
+    <button class="cat-btn" data-cat="food">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      食べ物・好み
+    </button>
+    <button class="cat-btn" data-cat="hobby">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M6 12h4"/><path d="M8 10v4"/><circle cx="16" cy="11" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg>
+      趣味・ゲーム
+    </button>
+    <button class="cat-btn" data-cat="stream">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      配信のこと
+    </button>
+    <button class="cat-btn" data-cat="free">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="12" y1="7" x2="12" y2="13"/></svg>
+      自由回答
+    </button>
+    <button class="cat-btn" data-cat="fan">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      ファンへ
+    </button>
+  </div>
+</nav>
+
+<!-- Main -->
+<main class="qa-main">
+
+  <!-- キャラクター -->
+  <section class="qa-category sr" data-category="chara">
+    <div class="qa-category-header">
+      <span class="qa-category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>
+      <span class="qa-category-title">キャラクター</span>
+      <span class="qa-category-range">Q1–Q16</span>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q01</span>
+        <span class="qa-q-text">名前の由来は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">配信2日目に、干し柿が好きだって話をしていたらリスナーさんが名前を付けてくれたよ。それから大事にしてるんだ！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q05</span>
+        <span class="qa-q-text">ファンネームは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">推し柿</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q06</span>
+        <span class="qa-q-text">推しマークは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">🎪"</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q07</span>
+        <span class="qa-q-text">誕生日は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">3月15日</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q08</span>
+        <span class="qa-q-text">年齢設定は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">200歳以上なんだよね…。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q09</span>
+        <span class="qa-q-text">身長は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">153cm以上</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q10</span>
+        <span class="qa-q-text">種族は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">猫又</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q11</span>
+        <span class="qa-q-text">チャームポイントは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">二本のしっぽと耳だよ！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q12</span>
+        <span class="qa-q-text">一番好きな表情は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">ドヤ顔。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q13</span>
+        <span class="qa-q-text">モデルのこだわりは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">絶対かわいい頭身してるから見てほしいな。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q14</span>
+        <span class="qa-q-text">髪型のポイントは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">平凡なボブだよ。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q15</span>
+        <span class="qa-q-text">衣装のこだわりは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">おさがりのセーラー服だよ。ちょっとサイズが合ってないんだ。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q16</span>
+        <span class="qa-q-text">好きな色は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">ムラサキかなー。</div></div>
+    </div>
+  </section>
+
+  <!-- 食べ物・好み -->
+  <section class="qa-category sr" data-category="food">
+    <div class="qa-category-header">
+      <span class="qa-category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
+      <span class="qa-category-title">食べ物・好み</span>
+      <span class="qa-category-range">Q17–Q25</span>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q17</span>
+        <span class="qa-q-text">好きな食べ物は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">うに。世界で一番うにが好き。果物ではもちろん、柿だよね。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q18</span>
+        <span class="qa-q-text">苦手な食べ物は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">ぴーたけ。（ピーマンとしいたけ）</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q19</span>
+        <span class="qa-q-text">好きな飲み物は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">オロナミンC！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q20</span>
+        <span class="qa-q-text">好きなお菓子は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">何でも好きだけど、チョコ系があるとご機嫌。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q21</span>
+        <span class="qa-q-text">好きな季節は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">秋と冬！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q22</span>
+        <span class="qa-q-text">朝型？夜型？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">夜型…。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q23</span>
+        <span class="qa-q-text">インドア？アウトドア？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">インドアでしかない。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q37</span>
+        <span class="qa-q-text">好きな動物は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">何でも好き！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q38</span>
+        <span class="qa-q-text">犬派？猫派？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">猫…かなぁ。猫又だし。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q39</span>
+        <span class="qa-q-text">好きな場所は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">ベッドの上</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q40</span>
+        <span class="qa-q-text">行ってみたい場所は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">名古屋で食べ歩きしたい！</div></div>
+    </div>
+  </section>
+
+  <!-- 趣味・ゲーム -->
+  <section class="qa-category sr" data-category="hobby">
+    <div class="qa-category-header">
+      <span class="qa-category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M6 12h4"/><path d="M8 10v4"/><circle cx="16" cy="11" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg></span>
+      <span class="qa-category-title">趣味・ゲーム</span>
+      <span class="qa-category-range">Q24–Q36 / Q64–Q69</span>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q24</span>
+        <span class="qa-q-text">趣味は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">配信かな～！みんなと話せる配信が今一番楽しいよ！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q25</span>
+        <span class="qa-q-text">特技は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">ずっとしゃべり続けられるのはもはや特技だって言われたよ…。そんなことないよね？</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q26</span>
+        <span class="qa-q-text">苦手なことは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">運動</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q27</span>
+        <span class="qa-q-text">好きなゲームは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">リトルナイトメアシリーズ（1と2）</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q28</span>
+        <span class="qa-q-text">得意ジャンルは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">横スクロールアクション！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q29</span>
+        <span class="qa-q-text">苦手ジャンルは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">一人称視点のゲーム全般…。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q30</span>
+        <span class="qa-q-text">一番やりこんだゲームは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">ぷよぷよ</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q31</span>
+        <span class="qa-q-text">好きなアニメは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">攻殻機動隊・銀魂・オッドタクシー</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q32</span>
+        <span class="qa-q-text">好きな漫画は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">いろいろ</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q33</span>
+        <span class="qa-q-text">好きな映画は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">ズートピア</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q34</span>
+        <span class="qa-q-text">好きな音楽は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">ベースラインがきれいな曲が好きだよ。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q35</span>
+        <span class="qa-q-text">好きなアーティストは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">八十八ヶ所巡礼・Suspended 4th</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q36</span>
+        <span class="qa-q-text">カラオケの十八番は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">パイパイ仮面でどうかしらん</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q64</span>
+        <span class="qa-q-text">ソシャゲはやる？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">StumbleGuysってソシャゲに入る？</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q65</span>
+        <span class="qa-q-text">課金はする？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">お礼の意味で課金することもあるよー。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q66</span>
+        <span class="qa-q-text">好きな武器は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">モンハンならランス。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q67</span>
+        <span class="qa-q-text">好きなポケモンは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">コダック</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q68</span>
+        <span class="qa-q-text">好きなキャラは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">銀魂の神楽ちゃん</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q69</span>
+        <span class="qa-q-text">好きなセリフは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">憧れは理解から最も遠い感情だよ</div></div>
+    </div>
+  </section>
+
+  <!-- 配信のこと -->
+  <section class="qa-category sr" data-category="stream">
+    <div class="qa-category-header">
+      <span class="qa-category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></span>
+      <span class="qa-category-title">配信のこと</span>
+      <span class="qa-category-range">Q02–Q04 / Q43–Q63</span>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q02</span>
+        <span class="qa-q-text">初配信の感想は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">緊張しすぎて覚えてないなぁ。ただ、たくさん人が来てくれて嬉しかったのを覚えてる。何を話したんだろう…。初配信は名前も決まってなかったからね。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q03</span>
+        <span class="qa-q-text">活動歴は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">2024年10月から始めたよ。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q04</span>
+        <span class="qa-q-text">挨拶のこだわりは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">こだわりのフレーズはないけど、配信に入ってきてくれた人と、終わりまでいてくれた人には感謝の気持ちを伝えるようにしているよ。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q43</span>
+        <span class="qa-q-text">活動のきっかけは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">なりゆきだよ。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q44</span>
+        <span class="qa-q-text">デビューの理由は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">なりゆきだってば。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q45</span>
+        <span class="qa-q-text">初配信前の心境は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">人が来てくれるか不安だったよね…。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q46</span>
+        <span class="qa-q-text">一番緊張した配信は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">初めてのコラボかな…ずっと…配信でも引きこもっていたから…。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q47</span>
+        <span class="qa-q-text">一番楽しかった配信は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">毎日楽しいよ！最近は海外からもリスナーさんが何人か来てくれて、語学力向上をですね…。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q48</span>
+        <span class="qa-q-text">一番大変だったことは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">牡蠣に当たったときの配信…。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q49</span>
+        <span class="qa-q-text">やらかしエピソードは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">自分から誘ったモノマネしりとり企画で、一週目で負けました。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q50</span>
+        <span class="qa-q-text">黒歴史は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">どれのことだろう？</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q54</span>
+        <span class="qa-q-text">配信で大事にしてることは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">続ける事だよ。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q55</span>
+        <span class="qa-q-text">配信前ルーティンは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">お茶とおやつの準備…。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q56</span>
+        <span class="qa-q-text">配信後の過ごし方は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">配信中に食べれなかったおやつを食べるよねー。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q57</span>
+        <span class="qa-q-text">配信頻度は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">毎日配信だよ！BANされない限りは…ね！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q58</span>
+        <span class="qa-q-text">長時間配信は得意？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">勝手に時間が経ってるんだよ…。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q59</span>
+        <span class="qa-q-text">雑談は得意？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">得意というか他に何もできないよ！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q60</span>
+        <span class="qa-q-text">絶叫配信はする？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">したくてするもんじゃないよね。出ちゃうもんだよね。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q61</span>
+        <span class="qa-q-text">ホラーは得意？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">楽しいよねぇ…怖いけど。おすすめの三人称視点のゲームがあったら教えてほしいな。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q62</span>
+        <span class="qa-q-text">泣きゲーは好き？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">狙って泣かせに来るのは嫌かも？犬は〇ろすなって思う。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q63</span>
+        <span class="qa-q-text">FPSは得意？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">無理無理無理なやつな。</div></div>
+    </div>
+  </section>
+
+  <!-- 自由回答 -->
+  <section class="qa-category sr" data-category="free">
+    <div class="qa-category-header">
+      <span class="qa-category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="12" y1="7" x2="12" y2="13"/></svg></span>
+      <span class="qa-category-title">自由回答</span>
+      <span class="qa-category-range">Q41–Q42 / Q70–Q93</span>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q41</span>
+        <span class="qa-q-text">尊敬する人は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">母です。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q42</span>
+        <span class="qa-q-text">憧れのVtuberは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">活動されている全てのV！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q51</span>
+        <span class="qa-q-text">一番嬉しかったことは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">どんな時も応援してくれる人がいる事かなぁ。日々実感してるよ。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q52</span>
+        <span class="qa-q-text">印象的なコメントは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">「母の配信いつですか？」</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q53</span>
+        <span class="qa-q-text">ファンの好きなところは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">打ち合わせしてるのかな？ってくらい面白いところかな！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q70</span>
+        <span class="qa-q-text">無人島に持っていく物は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">無難にナイフ</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q71</span>
+        <span class="qa-q-text">超能力が使えるなら？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">未来予知一択。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q72</span>
+        <span class="qa-q-text">生まれ変わるなら？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">転生…Vの転生ってなんか…この話題はやめておこ。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q73</span>
+        <span class="qa-q-text">タイムスリップするなら？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">帰ってこれないならどこも行きたくないかなー。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q75</span>
+        <span class="qa-q-text">休日の過ごし方は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">配信だよね…。日曜日の午後は脱出ゲーム会をしているよ！脱出ゲーム好き集まれー！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q76</span>
+        <span class="qa-q-text">最近ハマってるものは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">牛乳プリン作り！！！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q77</span>
+        <span class="qa-q-text">最近笑ったことは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">毎日笑わせてもらってますねぇ。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q78</span>
+        <span class="qa-q-text">最近泣いたことは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">Xで広告で流れてきた漫画読んで…。ついつい無料分読んじゃうよね。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q79</span>
+        <span class="qa-q-text">最近買ったものは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">カルディでリスナーさんのおすすめ買いあさってきたよ！まだまだカルディのおすすめ募集中！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q80</span>
+        <span class="qa-q-text">今一番欲しいものは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">優勝。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q81</span>
+        <span class="qa-q-text">寝る前にすることは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">配信…。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q82</span>
+        <span class="qa-q-text">起きて最初にすることは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">歯磨きして配信…。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q83</span>
+        <span class="qa-q-text">自分を一言で表すと？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">清純派</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q84</span>
+        <span class="qa-q-text">自分の強みは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">見た人が教えてー！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q85</span>
+        <span class="qa-q-text">自分の弱みは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">朝。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q86</span>
+        <span class="qa-q-text">実は○○です？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">実は…落ち込みやすいんです…こんな私を支えてね？</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q87</span>
+        <span class="qa-q-text">ギャップある？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">…？？？</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q88</span>
+        <span class="qa-q-text">理想の配信者像は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">理想を探して日々悶えています。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q89</span>
+        <span class="qa-q-text">今後の目標は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">まずは東北で名のあるVになるぞ！！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q90</span>
+        <span class="qa-q-text">やってみたい企画は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">お祭り潜入企画とかやりたいね！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q91</span>
+        <span class="qa-q-text">コラボしたい相手は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">長いコラボ配信ってやったことないから考えたことなかった！！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q92</span>
+        <span class="qa-q-text">目指している夢は？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">東北の猫又Vライバーとして、楽天球場の会場アナウンス…からの、地元企業のパッケージ…という実績を積んだうえで、長野県信州の市田柿のパッケージになりたい。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q93</span>
+        <span class="qa-q-text">10年後どうなっていたい？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">配信続けられたらうれしいな！もちろんついてきてくれるよね？</div></div>
+    </div>
+  </section>
+
+  <!-- ファンへ -->
+  <section class="qa-category sr" data-category="fan">
+    <div class="qa-category-header">
+      <span class="qa-category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+      <span class="qa-category-title">ファンへ</span>
+      <span class="qa-category-range">Q94–Q100</span>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q94</span>
+        <span class="qa-q-text">ファンに一言！</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">末永ーーーーくよろしくお願いします！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q95</span>
+        <span class="qa-q-text">初見さんに一言！</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">末永ーーーーく大事にするから沼っちゃいなよ！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q96</span>
+        <span class="qa-q-text">自分の配信を一言で表すと？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">そこに帰れば笑いあえる場所！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q97</span>
+        <span class="qa-q-text">布教するならどの配信？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">いつでもOK～。参加型のゲームはほかのリスナーさんとも仲良くなりやすいんじゃないかな？</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q98</span>
+        <span class="qa-q-text">リスナーに禁止したいことは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">ガチ恋、ガチ喧嘩、他枠の悪口。</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q99</span>
+        <span class="qa-q-text">リスナーにお願いしたいことは？</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">一緒に楽しい時間を作ってほしい！</div></div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-trigger" aria-expanded="false">
+        <span class="qa-num">Q100</span>
+        <span class="qa-q-text">最後に一言！</span>
+        <svg class="qa-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="qa-body"><div class="qa-body-inner">これからも笑いあえる毎日にしようね！</div></div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  © 2024 星柿☆猫 / Mao☆Hoshigaki · All rights reserved.
+</footer>
+
+<script>
+  // Accordion
+  document.querySelectorAll('.qa-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      const body = btn.nextElementSibling;
+      body.style.maxHeight = expanded ? '0' : body.scrollHeight + 'px';
+    });
+  });
+
+  // Category filter
+  const catBtns = document.querySelectorAll('.cat-btn');
+  const categories = document.querySelectorAll('.qa-category');
+
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = btn.dataset.cat;
+      categories.forEach(sec => {
+        if (target === 'all' || sec.dataset.category === target) {
+          sec.style.display = '';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('sr-on');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.sr').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
