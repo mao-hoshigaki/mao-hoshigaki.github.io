@@ -118,17 +118,24 @@
     .hero-chara {
       position: absolute;
       bottom: 0;
-      right: 5%;
+      left: 42%;
       height: 92%;
-      object-fit: contain;
       opacity: .38;
       z-index: 0;
       pointer-events: none;
       user-select: none;
     }
 
+    @media (max-width: 1024px) {
+      .hero-chara { left: 36%; height: 88%; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-chara { left: 28%; height: 82%; }
+    }
+
     @media (max-width: 480px) {
-      .hero-chara { right: -4%; height: 80%; }
+      .hero-chara { left: 18%; height: 74%; }
     }
 
     .hero-label {
