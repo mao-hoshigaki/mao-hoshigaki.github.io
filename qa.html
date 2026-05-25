@@ -115,6 +115,22 @@
       pointer-events: none;
     }
 
+    .hero-chara {
+      position: absolute;
+      bottom: 0;
+      right: 5%;
+      height: 92%;
+      object-fit: contain;
+      opacity: .38;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @media (max-width: 480px) {
+      .hero-chara { right: -4%; height: 80%; }
+    }
+
     .hero-label {
       font-size: .62rem;
       letter-spacing: .26em;
@@ -370,6 +386,7 @@
 
 <!-- Hero -->
 <section class="qa-hero">
+  <img class="hero-chara" src="images/Mao_qa.png" alt="" aria-hidden="true" />
   <p class="hero-label">Profile · Q&A</p>
   <h1 class="hero-title">100問<span>100答</span></h1>
   <p class="hero-desc">東北の猫又Vライバー・星柿☆猫のことを<br>全部答えちゃいます！</p>
