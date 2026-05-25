@@ -236,10 +236,12 @@ body {
 
 .logo-sub {
   font-size: .72rem;
-  letter-spacing: .22em;
+  letter-spacing: .08em;
   color: rgba(255, 255, 255, .68);
   text-transform: uppercase;
   margin-top: .1rem;
+  display: flex;
+  gap: 0 .4rem;
 }
 
 /* ── Mute button ── */
@@ -537,6 +539,31 @@ body {
   transform: translateY(-1px);
 }
 
+@keyframes katagata {
+  0%, 68%    { transform: translate(0, 0) rotate(0deg); }
+  69%        { transform: translate(-2px,  1px) rotate(-.4deg); }
+  70%        { transform: translate( 2px, -1px) rotate( .4deg); }
+  71%        { transform: translate(-2px, -1px) rotate(-.4deg); }
+  72%        { transform: translate( 2px,  1px) rotate( .4deg); }
+  73%        { transform: translate(-1px,  2px) rotate(-.4deg); }
+  74%        { transform: translate( 2px, -2px) rotate( .4deg); }
+  75%        { transform: translate(-2px,  0px) rotate(-.4deg); }
+  76%        { transform: translate( 1px,  2px) rotate( .4deg); }
+  77%        { transform: translate(-2px, -1px) rotate(-.4deg); }
+  78%        { transform: translate( 2px,  1px) rotate( .4deg); }
+  79%        { transform: translate(-1px,  0px) rotate(-.4deg); }
+  80%        { transform: translate( 0,    0  ) rotate( 0deg); }
+  80.01%, 100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.btn-qa {
+  animation: katagata 4.5s linear infinite;
+}
+
+.btn-qa:hover {
+  animation-play-state: paused;
+}
+
 .btn-o {
   display: inline-flex;
   align-items: center;
@@ -740,6 +767,17 @@ body {
 }
 
 /* ── News ── */
+#news {
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 4px,
+      rgba(255, 255, 255, .03) 4px,
+      rgba(255, 255, 255, .03) 8px
+    ),
+    #1e1438;
+}
 
 /* ── X 個別ポスト埋め込み ── */
 #tweet-wrap {
@@ -768,7 +806,15 @@ body {
 
 /* ── Goods ── */
 #goods {
-  background: #221432;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 4px,
+      rgba(255, 255, 255, .03) 4px,
+      rgba(255, 255, 255, .03) 8px
+    ),
+    #221432;
 }
 
 .shop-block {
@@ -1024,13 +1070,14 @@ body {
   height: 400px;
   background: url('images/Mao_footer.png') no-repeat bottom center / contain;
   opacity: 0;
-  transition: opacity .3s ease;
+  transition: opacity .7s ease;
   pointer-events: none;
   z-index: 0;
 }
 
 #contact:has(.btn-p:hover, .btn-marshmallow:hover)::after {
   opacity: 0.5;
+  transition: opacity .5s ease;
 }
 
 #contact .section {
@@ -1179,6 +1226,7 @@ body {
 footer {
   padding: 2.4rem 1.5rem;
   text-align: center;
+  background: #000;
   border-top: 1px solid #2e2048;
   color: #a090c0;
   font-size: .7rem;
@@ -1369,6 +1417,14 @@ footer {
    3枚横並び
 ════════════════════════════════════════ */
 @media (min-width: 1024px) {
+  .logo-sub {
+    display: block;
+    letter-spacing: .22em;
+  }
+  .logo-sub span:first-child::after {
+    content: ' ·';
+  }
+
   #contact::after {
     max-width: 100%;
     height: min(33.33vw, 400px);
