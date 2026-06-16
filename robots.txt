@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mao-hoshigaki.github.io/sitemap.xml
