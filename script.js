@@ -131,7 +131,7 @@ const GOODS = [
   },
   {
     shop: 'koufukudo',
-    name: '星柿⭐︎猫に煽られたい人のための缶バッチ',
+    name: '星柿☆猫（ﾎｼｶﾞｷ ﾏｵ）の大きめの缶バッチ。75mm',
     price: '¥708',
     img: 'https://baseec-img-mng.akamaized.net/images/item/origin/d87bb663d68988a589ced9cc90666dde.png?imformat=generic&q=90&im=Resize,width=640,type=normal',
     url: 'https://fukutaro86.thebase.in/items/144545660',
