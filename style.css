@@ -804,6 +804,55 @@ body {
   }
 }
 
+/* ── News: 月替わり配布 ── */
+.news-gift {
+  max-width: 620px;
+  margin: 2.5rem auto 0;
+  text-align: center;
+}
+
+.news-gift-title {
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  letter-spacing: .03em;
+}
+
+.news-gift-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media(min-width:560px) {
+  .news-gift-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.news-gift-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .9rem;
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.news-gift-card img {
+  width: 100%;
+  border-radius: .6rem;
+  display: block;
+}
+
+.news-gift-dl {
+  width: 100%;
+  justify-content: center;
+}
+
 
 /* ── Goods ── */
 #goods {
