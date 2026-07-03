@@ -498,6 +498,10 @@
 
   var COLS=10, ROWS=20;
   var SPEED_TABLE=[800,650,500,380,260];
+  var SPEED_STAGE_DECAY=15;
+  var SPEED_MIN=80;
+  var SOFT_DROP_MULTIPLIER=8;
+  var SOFT_DROP_MIN_INTERVAL=15;
   var LOCK_DELAY=500;
   var MAX_LOCK_RESETS=15;
   var DAS_DELAY=170, ARR_INTERVAL=50;
@@ -564,6 +568,7 @@
   var lockTimer = null, lockResets = 0;
   var paused = false, gameOverFlag = false;
   var dasState = {dir:0, timer:0, fired:false};
+  var softDropping = false;
   var lastTime = 0;
   var giftPendingScore = 0;
 
@@ -573,8 +578,21 @@
     return b;
   }
 
-  function currentLevelIndex(){ return Math.floor(totalLines/10) % 5; }
+  function currentLevelIndex(){ return Math.floor(totalLines/10); }
   function currentLevelDisplay(){ return currentLevelIndex()+1; }
+
+  function speedForStage(idx){
+    if(idx < SPEED_TABLE.length) return SPEED_TABLE[idx];
+    var over = idx - (SPEED_TABLE.length-1);
+    return Math.max(SPEED_MIN, SPEED_TABLE[SPEED_TABLE.length-1] - over*SPEED_STAGE_DECAY);
+  }
+
+  function currentSpeedStageIndex(){
+    var levelIndex0 = currentLevelIndex();
+    var level = levelIndex0+1;
+    var tier = Math.floor(level/10);
+    return (levelIndex0%5) + tier;
+  }
 
   function refillBag(){
     if(bag.length===0){
@@ -638,12 +656,6 @@
     var gy = current.y;
     while(canPlace(current.type, current.rot, current.x, gy+1)) gy++;
     return gy;
-  }
-
-  function hardDrop(){
-    if(!current || paused || gameOverFlag) return;
-    while(moveActive(0,1)){}
-    lockPiece();
   }
 
   function spawnPiece(){
@@ -735,7 +747,7 @@
     bag = []; queue = [];
     score = 0; totalLines = 0;
     gravityAcc = 0; lockTimer = null; lockResets = 0;
-    paused = false; gameOverFlag = false;
+    paused = false; gameOverFlag = false; softDropping = false;
     document.getElementById('gameover-overlay').classList.remove('show');
     document.getElementById('gift-overlay').classList.remove('show');
     document.getElementById('pause-overlay').classList.remove('show');
@@ -971,7 +983,11 @@
     if(gameOverFlag) return;
     paused = !paused;
     document.getElementById('pause-overlay').classList.toggle('show', paused);
+    if(paused) softDropping = false;
   }
+
+  function startSoftDrop(){ softDropping = true; }
+  function stopSoftDrop(){ softDropping = false; }
 
   document.getElementById('btn-left').addEventListener('pointerdown', function(e){ e.preventDefault(); startRepeat(-1); });
   document.getElementById('btn-left').addEventListener('pointerup', function(){ stopRepeat(-1); });
@@ -979,7 +995,9 @@
   document.getElementById('btn-right').addEventListener('pointerdown', function(e){ e.preventDefault(); startRepeat(1); });
   document.getElementById('btn-right').addEventListener('pointerup', function(){ stopRepeat(1); });
   document.getElementById('btn-right').addEventListener('pointerleave', function(){ stopRepeat(1); });
-  document.getElementById('btn-drop').addEventListener('pointerdown', function(e){ e.preventDefault(); hardDrop(); });
+  document.getElementById('btn-drop').addEventListener('pointerdown', function(e){ e.preventDefault(); startSoftDrop(); });
+  document.getElementById('btn-drop').addEventListener('pointerup', function(){ stopSoftDrop(); });
+  document.getElementById('btn-drop').addEventListener('pointerleave', function(){ stopSoftDrop(); });
   document.getElementById('btn-rotate').addEventListener('pointerdown', function(e){ e.preventDefault(); rotateActive(); });
   document.getElementById('close-btn').addEventListener('click', togglePause);
   document.getElementById('resume-btn').addEventListener('click', function(){
@@ -1035,13 +1053,14 @@
       case 'ArrowLeft': startRepeat(-1); break;
       case 'ArrowRight': startRepeat(1); break;
       case 'ArrowUp': rotateActive(); break;
-      case 'ArrowDown': case 'Space': hardDrop(); break;
+      case 'ArrowDown': startSoftDrop(); break;
       case 'KeyP': togglePause(); break;
     }
   });
   window.addEventListener('keyup', function(e){
     if(e.code==='ArrowLeft') stopRepeat(-1);
     if(e.code==='ArrowRight') stopRepeat(1);
+    if(e.code==='ArrowDown') stopSoftDrop();
   });
 
   window.addEventListener('resize', resizeField);
@@ -1053,7 +1072,8 @@
     lastTime = time;
 
     if(!paused && !gameOverFlag && current){
-      var interval = SPEED_TABLE[currentLevelIndex()];
+      var interval = speedForStage(currentSpeedStageIndex());
+      if(softDropping){ interval = Math.max(SOFT_DROP_MIN_INTERVAL, interval/SOFT_DROP_MULTIPLIER); }
       gravityAcc += dt;
       while(gravityAcc>=interval){
         gravityAcc -= interval;
