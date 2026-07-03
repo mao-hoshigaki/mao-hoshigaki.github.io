@@ -170,6 +170,46 @@
   }
   .jelly-btn svg{width:18px; height:18px; flex:0 0 auto;}
   .jelly-btn:active{transform:translateY(4px); box-shadow: inset 0 1px 0 rgba(255,255,255,.4);}
+  .jelly-btn.small{padding:9px 20px; font-size:.85rem;}
+  .jelly-btn:disabled{opacity:.4; pointer-events:none;}
+
+  .gift-main, .gift-rank-section{display:flex; flex-direction:column; align-items:center; gap:14px; width:100%;}
+  .gift-rank-section{display:none;}
+
+  .name-entry{display:none; flex-direction:column; align-items:center; gap:8px; width:100%;}
+  .rank-msg{color:var(--s); font-weight:600; margin:0;}
+  .name-input{
+    width:120px; text-align:center; letter-spacing:.3em; text-transform:uppercase;
+    font-family:'Baloo 2','Segoe UI',sans-serif; font-weight:800; font-size:1.3rem;
+    padding:8px 0; border-radius:12px; border:2px solid var(--i); color:var(--ink);
+    background:#fff; outline:none;
+  }
+  .name-entry-actions{display:flex; align-items:center; gap:12px;}
+  .text-btn{
+    border:none; background:none; color:#fff; opacity:.7; font-size:.8rem;
+    text-decoration:underline; font-family:'Fredoka','system-ui',sans-serif;
+  }
+  .text-btn:active{opacity:1;}
+
+  .ranking-box{
+    width:100%; max-width:260px; background:rgba(255,255,255,.06); border-radius:16px;
+    padding:10px 14px; box-shadow: inset 0 0 0 1.5px var(--i);
+  }
+  .ranking-title{
+    font-family:'Baloo 2','Segoe UI',sans-serif; font-size:.7rem; letter-spacing:.08em;
+    color:var(--i); text-align:center; margin-bottom:6px;
+  }
+  .ranking-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px;}
+  .ranking-list li{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    font-size:.9rem; padding:2px 4px;
+  }
+  .ranking-list .rk-pos{
+    font-family:'Baloo 2','Segoe UI',sans-serif; font-weight:800; color:var(--s); width:1.4em; text-align:center;
+  }
+  .ranking-list .rk-name{flex:1; text-align:left; font-weight:600; letter-spacing:.05em;}
+  .ranking-list .rk-score{font-weight:600; color:#fff; opacity:.9;}
+  .ranking-list .rk-empty{opacity:.5; font-size:.8rem; text-align:center; width:100%; justify-content:center;}
 
   /* ---- controls ---- */
   .controls{
@@ -365,13 +405,42 @@
       <div class="overlay-panel" id="gameover-overlay">
         <h2>GAME OVER</h2>
         <p>SCORE: <b id="final-score">0</b></p>
+        <div class="name-entry" id="name-entry-go">
+          <p class="rank-msg">TOP5入り！なまえをいれてね</p>
+          <input class="name-input" id="name-input-go" type="text" maxlength="3" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="ABC">
+          <div class="name-entry-actions">
+            <button class="jelly-btn small" id="name-submit-go" disabled>とうろく</button>
+            <button class="text-btn" id="name-skip-go">とばす</button>
+          </div>
+        </div>
+        <div class="ranking-box" id="ranking-box-go">
+          <div class="ranking-title">RANKING</div>
+          <ol class="ranking-list" id="ranking-list-go"></ol>
+        </div>
         <button class="jelly-btn" id="retry-btn">リベンジ！</button>
       </div>
       <div class="overlay-panel" id="gift-overlay">
-        <img class="gift-img" src="images/gamecleared.png" alt="gift">
-        <p>SCORE: <b id="gift-score">0</b></p>
-        <p>たくさん遊んでくれてありがとう！</p>
-        <button class="jelly-btn" id="gift-retry-btn">リベンジ！</button>
+        <div class="gift-main" id="gift-main">
+          <img class="gift-img" src="images/gamecleared.png" alt="gift">
+          <p>SCORE: <b id="gift-score">0</b></p>
+          <p>たくさん遊んでくれてありがとう！</p>
+          <button class="jelly-btn" id="gift-close-btn">とじる</button>
+        </div>
+        <div class="gift-rank-section" id="gift-rank-section">
+          <div class="name-entry" id="name-entry-gift">
+            <p class="rank-msg">TOP5入り！なまえをいれてね</p>
+            <input class="name-input" id="name-input-gift" type="text" maxlength="3" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="ABC">
+            <div class="name-entry-actions">
+              <button class="jelly-btn small" id="name-submit-gift" disabled>とうろく</button>
+              <button class="text-btn" id="name-skip-gift">とばす</button>
+            </div>
+          </div>
+          <div class="ranking-box" id="ranking-box-gift">
+            <div class="ranking-title">RANKING</div>
+            <ol class="ranking-list" id="ranking-list-gift"></ol>
+          </div>
+          <button class="jelly-btn" id="gift-retry-btn">リベンジ！</button>
+        </div>
       </div>
     </div>
   </div>
@@ -387,6 +456,42 @@
 
 </div>
 
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getFirestore, collection, addDoc, getDocs, query, orderBy, limit, serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyDDkZaZ9apuL-9Zg62Xoi4L-VUFWVZ3YKw",
+    authDomain: "mao-hoshigaki.firebaseapp.com",
+    projectId: "mao-hoshigaki",
+    storageBucket: "mao-hoshigaki.firebasestorage.app",
+    messagingSenderId: "739001820476",
+    appId: "1:739001820476:web:b0b3f3c9c928cec8a5aa39"
+  };
+
+  var app = initializeApp(firebaseConfig);
+  var db = getFirestore(app);
+  var rankingCol = collection(db, "maorisRanking");
+
+  async function fetchTop(n){
+    var q = query(rankingCol, orderBy("score","desc"), limit(n));
+    var snap = await getDocs(q);
+    var list = [];
+    snap.forEach(function(doc){
+      var d = doc.data();
+      list.push({name:d.name, score:d.score});
+    });
+    return list;
+  }
+
+  async function addEntry(name, score){
+    await addDoc(rankingCol, {name:name, score:score, createdAt:serverTimestamp()});
+  }
+
+  window.MaorisRanking = {fetchTop:fetchTop, add:addEntry};
+</script>
 <script>
 (function(){
   "use strict";
@@ -397,7 +502,8 @@
   var MAX_LOCK_RESETS=15;
   var DAS_DELAY=170, ARR_INTERVAL=50;
   var SCORE_TABLE={1:100,2:300,3:500,4:800};
-  var SCORE_GIFT_THRESHOLD=999999;
+  var SCORE_GIFT_THRESHOLD=99999;
+  var RANKING_LIMIT=5;
 
   var COLORS={I:'#21E6FF',O:'#FFE02D',T:'#FF2D9B',S:'#A6FF1F',Z:'#FF4D5E',J:'#3D7BFF',L:'#FF9A1F'};
   var TYPES=['I','O','T','S','Z','J','L'];
@@ -459,6 +565,7 @@
   var paused = false, gameOverFlag = false;
   var dasState = {dir:0, timer:0, fired:false};
   var lastTime = 0;
+  var giftPendingScore = 0;
 
   function makeEmptyBoard(){
     var b=[];
@@ -611,11 +718,15 @@
       sfxGameover.play().catch(function(){});
     }
     if(score > SCORE_GIFT_THRESHOLD){
+      giftPendingScore = score;
       document.getElementById('gift-score').textContent = score;
+      document.getElementById('gift-main').style.display = '';
+      document.getElementById('gift-rank-section').style.display = 'none';
       document.getElementById('gift-overlay').classList.add('show');
     } else {
       document.getElementById('final-score').textContent = score;
       document.getElementById('gameover-overlay').classList.add('show');
+      goRankPanel.open(score);
     }
   }
 
@@ -628,9 +739,98 @@
     document.getElementById('gameover-overlay').classList.remove('show');
     document.getElementById('gift-overlay').classList.remove('show');
     document.getElementById('pause-overlay').classList.remove('show');
+    document.getElementById('gift-main').style.display = '';
+    document.getElementById('gift-rank-section').style.display = 'none';
     updateHUD();
     renderLocked();
     spawnPiece();
+  }
+
+  // ---- ranking ----
+  function createRankingPanel(ids){
+    var input = document.getElementById(ids.input);
+    var submitBtn = document.getElementById(ids.submit);
+    var skipBtn = document.getElementById(ids.skip);
+    var entry = document.getElementById(ids.entry);
+    var listEl = document.getElementById(ids.list);
+    var scoreForEntry = 0;
+
+    function renderList(list, message){
+      listEl.innerHTML = '';
+      if(message){
+        var lim = document.createElement('li');
+        lim.className = 'rk-empty';
+        lim.textContent = message;
+        listEl.appendChild(lim);
+        return;
+      }
+      if(!list.length){
+        var li0 = document.createElement('li');
+        li0.className = 'rk-empty';
+        li0.textContent = 'まだ記録がありません';
+        listEl.appendChild(li0);
+        return;
+      }
+      list.forEach(function(item, i){
+        var li = document.createElement('li');
+        var pos = document.createElement('span'); pos.className='rk-pos'; pos.textContent=(i+1);
+        var name = document.createElement('span'); name.className='rk-name'; name.textContent=item.name;
+        var sc = document.createElement('span'); sc.className='rk-score'; sc.textContent=item.score;
+        li.appendChild(pos); li.appendChild(name); li.appendChild(sc);
+        listEl.appendChild(li);
+      });
+    }
+
+    function refresh(){
+      renderList([], 'ランキングを確認中…');
+      if(!window.MaorisRanking){
+        renderList([], 'ランキング機能を読み込めませんでした');
+        return Promise.resolve([]);
+      }
+      return window.MaorisRanking.fetchTop(RANKING_LIMIT).then(function(list){
+        renderList(list, null);
+        return list;
+      }).catch(function(){
+        renderList([], 'ランキングを取得できませんでした');
+        return [];
+      });
+    }
+
+    input.addEventListener('input', function(){
+      var v = input.value.replace(/[^A-Za-z]/g,'').slice(0,3);
+      if(v!==input.value) input.value = v;
+      submitBtn.disabled = v.length<1;
+    });
+
+    skipBtn.addEventListener('click', function(){
+      entry.style.display = 'none';
+    });
+
+    submitBtn.addEventListener('click', function(){
+      var name = input.value.replace(/[^A-Za-z]/g,'').slice(0,3);
+      if(name.length<1 || !window.MaorisRanking) return;
+      submitBtn.disabled = true;
+      window.MaorisRanking.add(name, scoreForEntry).then(function(){
+        entry.style.display = 'none';
+        return refresh();
+      }).catch(function(){
+        submitBtn.disabled = false;
+        renderList([], '登録に失敗しました。通信環境をご確認ください');
+      });
+    });
+
+    return {
+      open: function(score){
+        scoreForEntry = score;
+        input.value = '';
+        submitBtn.disabled = true;
+        entry.style.display = 'none';
+        refresh().then(function(list){
+          var qualifies = list.length < RANKING_LIMIT || score > list[list.length-1].score;
+          if(qualifies) entry.style.display = 'flex';
+        });
+      }
+    };
   }
 
   // ---- rendering ----
@@ -794,6 +994,14 @@
     resetGame();
     playRestartSound();
   });
+  document.getElementById('gift-close-btn').addEventListener('click', function(){
+    document.getElementById('gift-main').style.display = 'none';
+    document.getElementById('gift-rank-section').style.display = 'flex';
+    giftRankPanel.open(giftPendingScore);
+  });
+
+  var goRankPanel = createRankingPanel({input:'name-input-go', submit:'name-submit-go', skip:'name-skip-go', entry:'name-entry-go', list:'ranking-list-go'});
+  var giftRankPanel = createRankingPanel({input:'name-input-gift', submit:'name-submit-gift', skip:'name-skip-gift', entry:'name-entry-gift', list:'ranking-list-gift'});
 
   // ---- sound ----
   var soundOn = false;
