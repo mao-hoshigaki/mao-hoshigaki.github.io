@@ -175,6 +175,8 @@
 
   .gift-main, .gift-rank-section{display:flex; flex-direction:column; align-items:center; gap:14px; width:100%;}
   .gift-rank-section{display:none;}
+  .gift-btn-row{display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;}
+  .save-hint{font-size:.75rem; opacity:.7; margin:0;}
 
   .name-entry{display:none; flex-direction:column; align-items:center; gap:8px; width:100%;}
   .rank-msg{color:var(--s); font-weight:600; margin:0;}
@@ -350,6 +352,11 @@
       <path d="M23 4v6h-6" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24">
+      <path d="M12 3v12" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      <path d="M6 10l6 6 6-6" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="5" y1="21" x2="19" y2="21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
   </defs>
 </svg>
 
@@ -424,7 +431,11 @@
           <img class="gift-img" src="images/gamecleared.png" alt="gift">
           <p>SCORE: <b id="gift-score">0</b></p>
           <p>たくさん遊んでくれてありがとう！</p>
-          <button class="jelly-btn" id="gift-close-btn">とじる</button>
+          <p class="save-hint" id="save-hint"></p>
+          <div class="gift-btn-row">
+            <button class="jelly-btn small" id="gift-save-btn"><svg viewBox="0 0 24 24"><use href="#icon-download"/></svg> ほぞんする</button>
+            <button class="jelly-btn" id="gift-close-btn">とじる</button>
+          </div>
         </div>
         <div class="gift-rank-section" id="gift-rank-section">
           <div class="name-entry" id="name-entry-gift">
@@ -571,6 +582,7 @@
   var softDropping = false;
   var lastTime = 0;
   var giftPendingScore = 0;
+  var isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
   function makeEmptyBoard(){
     var b=[];
@@ -735,6 +747,9 @@
       document.getElementById('gift-main').style.display = '';
       document.getElementById('gift-rank-section').style.display = 'none';
       document.getElementById('gift-overlay').classList.add('show');
+      document.getElementById('save-hint').textContent = isIOS
+        ? '保存先が開いたら画像を長押しして「写真に追加」を選んでね'
+        : '';
     } else {
       document.getElementById('final-score').textContent = score;
       document.getElementById('gameover-overlay').classList.add('show');
@@ -1017,6 +1032,32 @@
     document.getElementById('gift-rank-section').style.display = 'flex';
     giftRankPanel.open(giftPendingScore);
   });
+  document.getElementById('gift-save-btn').addEventListener('click', function(){
+    saveGiftImage();
+  });
+
+  function saveGiftImage(){
+    var url = 'images/gamecleared.png';
+    var btn = document.getElementById('gift-save-btn');
+    btn.disabled = true;
+    fetch(url).then(function(res){
+      if(!res.ok) throw new Error('fetch failed');
+      return res.blob();
+    }).then(function(blob){
+      var objUrl = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = objUrl;
+      a.download = 'maoris_gift.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(objUrl); }, 2000);
+    }).catch(function(){
+      window.open(url, '_blank');
+    }).finally(function(){
+      btn.disabled = false;
+    });
+  }
 
   var goRankPanel = createRankingPanel({input:'name-input-go', submit:'name-submit-go', skip:'name-skip-go', entry:'name-entry-go', list:'ranking-list-go'});
   var giftRankPanel = createRankingPanel({input:'name-input-gift', submit:'name-submit-gift', skip:'name-skip-gift', entry:'name-entry-gift', list:'ranking-list-gift'});
