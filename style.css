@@ -565,6 +565,10 @@ body {
   animation-play-state: paused;
 }
 
+.btn-qa.btn-game {
+  animation: none;
+}
+
 .btn-o {
   display: inline-flex;
   align-items: center;
