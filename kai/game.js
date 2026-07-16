@@ -7,13 +7,13 @@ const CONFIG = {
   TIME_LIMIT: 60,
   NORMAL_PIECE_COUNT: 6,        // total color palette size
   START_COLOR_COUNT: 5,         // colors in play when the round starts
-  COLOR_RAMP_TIME_LEFT: 20,     // when timeLeft drops to this, unlock the next color
+  COLOR_RAMP_TIME_LEFT: 150,    // when timeLeft (via combo time bonus) rises to this, unlock the next color
   BASE_SCORE_PER_PIECE: 30,
   COMBO_MULTIPLIER_STEP: 0.5,   // score multiplier grows by this per chain step
   TIME_BONUS_CHAIN1: 1,         // +1s on the 1st chain step
   TIME_BONUS_CHAIN2: 1.5,       // +1.5s on the 2nd chain step
   TIME_BONUS_CHAIN3PLUS: 2,     // +2s on 3rd+ chain steps
-  GAUGE_THRESHOLD: 45,          // tiles cleared (any match, chained or not) needed to drop a colorbomb
+  GAUGE_THRESHOLD: 90,          // tiles cleared (any match, chained or not) needed to drop a colorbomb
   IMAGES: {
     normal: [
       'images/kai1.png',
@@ -58,7 +58,10 @@ const SOUND_PATHS = {
 const SPECIAL_CREATE_SOUND_KEY = { line: 'specialCreateLine', bomb: 'specialCreateBomb' };
 const SPECIAL_ACTIVATE_SOUND_KEY = { line: 'specialActivateLine', bomb: 'specialActivateBomb', colorbomb: 'specialActivateColorbomb' };
 
-const HIGH_SCORE_KEY = 'kai_puzzle_highscore_v1';
+const HIGH_SCORE_KEYS = {
+  normal: 'kai_puzzle_highscore_v1',
+  timeAttack: 'kai_puzzle_highscore_timeattack_v1',
+};
 const RANKING_LIMIT = 5;
 
 /* ==================== small utilities ==================== */
@@ -72,8 +75,8 @@ function shuffleArray(arr) {
   return arr;
 }
 function isAdjacent(a, b) { return Math.abs(a.r - b.r) + Math.abs(a.c - b.c) === 1; }
-function loadHighScore() { return Number(localStorage.getItem(HIGH_SCORE_KEY) || 0); }
-function saveHighScore(v) { localStorage.setItem(HIGH_SCORE_KEY, String(v)); }
+function loadHighScore(mode) { return Number(localStorage.getItem(HIGH_SCORE_KEYS[mode]) || 0); }
+function saveHighScore(mode, v) { localStorage.setItem(HIGH_SCORE_KEYS[mode], String(v)); }
 function formatBonus(v) { return Number.isInteger(v) ? String(v) : v.toFixed(1); }
 
 /* ==================== sound manager ==================== */
@@ -148,6 +151,7 @@ let pointerState = null;
 let boardEl = null;
 
 const state = {
+  mode: 'normal',           // 'normal' | 'timeAttack'
   score: 0,
   timeLeft: CONFIG.TIME_LIMIT,
   cellSize: 44,
@@ -418,8 +422,10 @@ async function resolveCascade(chainIndex, swapHint) {
   const timeBonus = chainIndex === 1 ? CONFIG.TIME_BONUS_CHAIN1
     : chainIndex === 2 ? CONFIG.TIME_BONUS_CHAIN2
     : CONFIG.TIME_BONUS_CHAIN3PLUS;
-  state.timeLeft += timeBonus;
-  updateTimerUI();
+  if (state.mode !== 'timeAttack') {
+    state.timeLeft += timeBonus;
+    updateTimerUI();
+  }
 
   // --- special gauge: fills from every cleared tile, drops a colorbomb when full ---
   const variantTally = {};
@@ -442,7 +448,7 @@ async function resolveCascade(chainIndex, swapHint) {
 
   const firstCell = swapHint || (() => { const it = cellsToClear.values().next().value; return { r: it[0], c: it[1] }; })();
   spawnFloatText(firstCell, `+${gained}`, 'score-text', -12);
-  spawnFloatText(firstCell, `+${formatBonus(timeBonus)}s`, 'time-bonus', 12);
+  if (state.mode !== 'timeAttack') spawnFloatText(firstCell, `+${formatBonus(timeBonus)}s`, 'time-bonus', 12);
   if (chainIndex > 1) showComboBanner(chainIndex);
 
   new Set(specialSpawns.map(s => s.type)).forEach(type => SoundManager.play(SPECIAL_CREATE_SOUND_KEY[type]));
@@ -786,7 +792,7 @@ function timerTick(now) {
     endGame();
     return;
   }
-  if (state.activeColors < CONFIG.NORMAL_PIECE_COUNT && state.timeLeft <= CONFIG.COLOR_RAMP_TIME_LEFT) {
+  if (state.activeColors < CONFIG.NORMAL_PIECE_COUNT && state.timeLeft >= CONFIG.COLOR_RAMP_TIME_LEFT) {
     state.activeColors = CONFIG.NORMAL_PIECE_COUNT;
     showBanner('新しい色が登場！', 2000);
   }
@@ -795,11 +801,14 @@ function timerTick(now) {
 }
 
 /* ==================== game flow ==================== */
-function startGame() {
+function startGame(mode) {
+  state.mode = mode || state.mode || 'normal';
   phase = 'playing';
   locked = false;
   document.getElementById('start-overlay').classList.add('hidden');
   document.getElementById('result-overlay').classList.add('hidden');
+  document.querySelector('#timer-panel .timer-label').textContent =
+    state.mode === 'timeAttack' ? 'タイムアタック' : 'カウントダウン';
   state.score = 0;
   state.timeLeft = CONFIG.TIME_LIMIT;
   state.gauge = 0;
@@ -847,10 +856,12 @@ function endGame() {
   SoundManager.play('gameOver');
 
   const finalScore = Math.floor(state.score);
-  const high = Math.max(finalScore, loadHighScore());
-  saveHighScore(high);
+  const high = Math.max(finalScore, loadHighScore(state.mode));
+  saveHighScore(state.mode, high);
   document.getElementById('result-score').textContent = finalScore;
   document.getElementById('result-highscore').textContent = high;
+  document.getElementById('ranking-title-result').textContent =
+    state.mode === 'timeAttack' ? 'TIME ATTACK RANKING' : 'RANKING';
   document.getElementById('result-overlay').classList.remove('hidden');
   openRankingEntry(finalScore);
 }
@@ -891,7 +902,7 @@ function refreshRanking() {
     renderRankingList([], 'ランキング機能を読み込めませんでした');
     return Promise.resolve([]);
   }
-  return window.KaiRanking.fetchTop(RANKING_LIMIT).then(list => {
+  return window.KaiRanking.fetchTop(state.mode, RANKING_LIMIT).then(list => {
     renderRankingList(list, null);
     return list;
   }).catch(err => {
@@ -935,7 +946,7 @@ function wireRankingEvents() {
     const name = input.value.replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase();
     if (name.length < 1 || !window.KaiRanking) return;
     submitBtn.disabled = true;
-    window.KaiRanking.add(name, rankingScoreForEntry).then(() => {
+    window.KaiRanking.add(state.mode, name, rankingScoreForEntry).then(() => {
       entry.style.display = 'none';
       return refreshRanking();
     }).catch(err => {
@@ -962,13 +973,17 @@ function wireEvents() {
     soundBtn.setAttribute('aria-pressed', String(!muted));
   });
 
-  document.getElementById('start-btn').addEventListener('click', () => {
+  document.getElementById('start-btn-normal').addEventListener('click', () => {
     SoundManager.unlock();
-    startGame();
+    startGame('normal');
+  });
+  document.getElementById('start-btn-timeattack').addEventListener('click', () => {
+    SoundManager.unlock();
+    startGame('timeAttack');
   });
   document.getElementById('restart-btn').addEventListener('click', () => {
     SoundManager.unlock();
-    startGame();
+    startGame(state.mode);
   });
 
   document.getElementById('logo-btn').addEventListener('click', () => {
@@ -980,7 +995,7 @@ function wireEvents() {
   document.getElementById('pause-restart-btn').addEventListener('click', () => {
     document.getElementById('pause-overlay').classList.add('hidden');
     SoundManager.unlock();
-    startGame();
+    startGame(state.mode);
   });
 
   wireRankingEvents();
@@ -989,7 +1004,7 @@ function wireEvents() {
 document.addEventListener('DOMContentLoaded', () => {
   boardEl = document.getElementById('board');
   SoundManager.init();
-  document.getElementById('result-highscore').textContent = loadHighScore();
+  document.getElementById('result-highscore').textContent = loadHighScore('normal');
   computeLayout();
   wireEvents();
 });

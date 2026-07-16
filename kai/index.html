@@ -72,8 +72,17 @@
   <div id="start-overlay" class="overlay">
     <div class="overlay-card">
       <h1><img src="images/gamerogo.png" alt="The power of shellfish" class="overlay-logo"></h1>
-      <p class="overlay-desc">同じ絵柄を3つ以上つなげて消そう。<br>制限時間は60秒！<br>連鎖でスコアも時間も伸ばせ。</p>
-      <button id="start-btn" class="primary-btn">タップしてスタート</button>
+      <p class="overlay-desc">同じ絵柄を3つ以上つなげて消そう。<br>コースをえらんでスタート！</p>
+      <div class="mode-select">
+        <button id="start-btn-normal" class="mode-btn" data-mode="normal">
+          <span class="mode-btn-title">ノーマル</span>
+          <span class="mode-btn-desc">連鎖でスコアも時間も伸ばせ。制限時間60秒！</span>
+        </button>
+        <button id="start-btn-timeattack" class="mode-btn" data-mode="timeAttack">
+          <span class="mode-btn-title">タイムアタック</span>
+          <span class="mode-btn-desc">時間は伸びない、1分きっかりの真剣勝負！</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -93,7 +102,7 @@
       </div>
 
       <div class="ranking-box" id="ranking-box-result">
-        <div class="ranking-title">RANKING</div>
+        <div class="ranking-title" id="ranking-title-result">RANKING</div>
         <ol class="ranking-list" id="ranking-list-result"></ol>
       </div>
 
@@ -142,10 +151,14 @@
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
-  const rankingCol = collection(db, "kaiRanking");
+  const rankingCols = {
+    normal: collection(db, "kaiRanking"),
+    timeAttack: collection(db, "kaiRankingTimeAttack"),
+  };
 
-  async function fetchTop(n) {
-    const q = query(rankingCol, orderBy("score", "desc"), limit(n));
+  async function fetchTop(mode, n) {
+    const col = rankingCols[mode] || rankingCols.normal;
+    const q = query(col, orderBy("score", "desc"), limit(n));
     const snap = await getDocs(q);
     const list = [];
     snap.forEach(doc => {
@@ -155,8 +168,9 @@
     return list;
   }
 
-  async function addEntry(name, score) {
-    await addDoc(rankingCol, { name, score, createdAt: serverTimestamp() });
+  async function addEntry(mode, name, score) {
+    const col = rankingCols[mode] || rankingCols.normal;
+    await addDoc(col, { name, score, createdAt: serverTimestamp() });
   }
 
   window.KaiRanking = { fetchTop, add: addEntry };
