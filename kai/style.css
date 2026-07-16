@@ -500,6 +500,47 @@ html, body {
   font-size: 13px;
 }
 
+/* ---------- mode select (start overlay) ---------- */
+.mode-select {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mode-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 20px;
+  font-family: var(--font-round);
+  color: #fff;
+  background: linear-gradient(90deg, var(--accent), #ff9d6c);
+  border: 3px solid #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 6px 0 rgba(203,126,241,0.45), 0 10px 20px rgba(203,126,241,0.35);
+}
+.mode-btn:active { transform: translateY(2px) scale(0.97); box-shadow: 0 3px 0 rgba(203,126,241,0.45), 0 6px 12px rgba(203,126,241,0.3); }
+
+.mode-btn[data-mode="timeAttack"] {
+  background: linear-gradient(90deg, var(--accent-2), #4fe0b8);
+  box-shadow: 0 6px 0 rgba(79,183,255,0.4), 0 10px 20px rgba(79,183,255,0.3);
+}
+.mode-btn[data-mode="timeAttack"]:active { box-shadow: 0 3px 0 rgba(79,183,255,0.4), 0 6px 12px rgba(79,183,255,0.28); }
+
+.mode-btn-title {
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.mode-btn-desc {
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.92;
+  line-height: 1.4;
+}
+
 /* ---------- ranking ---------- */
 .name-entry {
   display: none;
