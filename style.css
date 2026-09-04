@@ -861,6 +861,12 @@ body {
   white-space: nowrap;
 }
 
+.news-gift-archive {
+  display: inline-flex;
+  margin-top: 1.5rem;
+  font-size: .78rem;
+}
+
 
 /* ── Goods ── */
 #goods {

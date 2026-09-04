@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>壁紙アーカイブ — 星柿☆猫</title>
+  <link rel="icon" href="images/icon.png" />
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: #1a1030;
+      color: #e8deff;
+      min-height: 100vh;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .fk-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .fk-icon {
+      height: 72px;
+      width: auto;
+      margin-bottom: 1rem;
+    }
+
+    .fk-label {
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #a78bfa;
+      margin-bottom: .4rem;
+    }
+
+    .fk-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #c4b5fd, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: .75rem;
+    }
+
+    .fk-intro {
+      font-size: .9rem;
+      color: #c4b5fd;
+      line-height: 1.8;
+    }
+
+    /* ── Wallpaper grid ── */
+    .wp-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 560px) {
+      .wp-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .wp-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .9rem;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(167, 139, 250, .2);
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+
+    .wp-card img {
+      width: 100%;
+      border-radius: .6rem;
+      display: block;
+    }
+
+    .wp-card-label {
+      font-size: .78rem;
+      color: #c4b5fd;
+    }
+
+    .btn-dl {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      width: 100%;
+      padding: .65rem 1.2rem;
+      border-radius: 999px;
+      border: 1.5px solid rgba(167, 139, 250, .4);
+      color: #e8deff;
+      font-size: .78rem;
+      font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: border-color .2s, color .2s;
+    }
+
+    .btn-dl:hover {
+      border-color: rgba(167, 139, 250, .8);
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: .8rem;
+      color: #7c3aed;
+      text-decoration: none;
+    }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- Header -->
+    <header class="fk-header">
+      <img class="fk-icon" src="images/icon.png" alt="星柿☆猫">
+      <p class="fk-label">Archive</p>
+      <h1 class="fk-title">壁紙アーカイブ</h1>
+      <p class="fk-intro">
+        過去に配布した壁紙をまとめています。<br>
+        よければ引き続きお使いください。
+      </p>
+    </header>
+
+    <!-- Wallpaper grid -->
+    <div class="wp-grid">
+      <div class="wp-card">
+        <img src="images/MAO壁紙.png" alt="7月PC壁紙" loading="lazy" />
+        <span class="wp-card-label">7月PC壁紙</span>
+        <a class="btn-dl" href="images/MAO壁紙.png" download>PC壁紙を保存</a>
+      </div>
+      <div class="wp-card">
+        <img src="images/MAO壁紙2.png" alt="7月PC壁紙2" loading="lazy" />
+        <span class="wp-card-label">7月PC壁紙2</span>
+        <a class="btn-dl" href="images/MAO壁紙2.png" download>PC壁紙2を保存</a>
+      </div>
+      <div class="wp-card">
+        <img src="images/Shimeji.png" alt="きせかえキーボード壁紙" loading="lazy" />
+        <span class="wp-card-label">きせかえキーボード壁紙</span>
+        <a class="btn-dl" href="images/Shimeji.png" download>きせかえキーボード壁紙を保存</a>
+      </div>
+      <div class="wp-card">
+        <img src="images/nebuta1.png" alt="ねぶたPC壁紙" loading="lazy" />
+        <span class="wp-card-label">ねぶたPC壁紙</span>
+        <a class="btn-dl" href="images/nebuta1.png" download>ねぶたPC壁紙を保存</a>
+      </div>
+      <div class="wp-card">
+        <img src="images/nebuta2.png" alt="ねぶたスマホ壁紙" loading="lazy" />
+        <span class="wp-card-label">ねぶたスマホ壁紙</span>
+        <a class="btn-dl" href="images/nebuta2.png" download>ねぶたスマホ壁紙を保存</a>
+      </div>
+    </div>
+
+    <a class="back-link" href="index.html">← メインページに戻る</a>
+
+  </div>
+</body>
+</html>
